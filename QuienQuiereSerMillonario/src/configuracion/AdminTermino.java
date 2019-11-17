@@ -50,7 +50,7 @@ public class AdminTermino {
         }
         return termino;
     }
-    
+    //menu de termino
     public void menuTermino(){
         System.out.println("Administrar Termino Academico");
         System.out.println("1.- Ingresar término\n 2.- Eliminar término\n 3.- Configurar término para el juego");

@@ -123,7 +123,7 @@ public class AdminMateria_Paralelo {
             }
         }
     }
-    
+    //Menu de administrar materias y paralelos
     public void menuAdminMateria(){
         System.out.println("Lista Materia: "+ getListaMateria());
         System.out.println("Lista Paralelos: " + getLista_paralelo());
@@ -159,7 +159,7 @@ public class AdminMateria_Paralelo {
                 break;
             case 4:
                 System.out.println("Agregar paralelo");
-                //falta que obtenga la materia y el termino
+                //falta que obtenga la materia y el termino, esto no se como hacerlo**
                 System.out.println("Ingrese el número del paralelo");
                 int numPar=sc.nextInt();
                 sc.next();

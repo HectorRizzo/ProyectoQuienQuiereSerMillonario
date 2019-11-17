@@ -70,7 +70,7 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
         int pos=sc.nextInt();
         listaPreguntas.remove(listaPreguntas.get(pos-1));
     }
-    
+    //menú de administrar preguntas
     public void menuAdminPreguntas(){
         System.out.println("Administrar Preguntas");
         System.out.println("1.- Visualizar preguntas\n 2.- Agregar pregunta\n 3.- Eliminar pregunta");

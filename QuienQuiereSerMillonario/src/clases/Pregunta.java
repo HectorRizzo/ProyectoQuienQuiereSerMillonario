@@ -24,6 +24,25 @@ public class Pregunta {
         this.resp_Correcta = resp_Correcta;
     }
 
+    /**Constructor con posibles respuestas
+     *
+     * @param enunciado
+     * @param nivel
+     * @param resp_Correcta
+     * @param posResp1
+     * @param posResp2
+     * @param posResp3
+     */
+    public Pregunta(String enunciado, int nivel, String resp_Correcta, String posResp1, String posResp2,String posResp3) {
+        this.enunciado = enunciado;
+        this.nivel = nivel;
+        this.resp_Correcta = resp_Correcta;
+        posibles_resp.add(posResp1);
+        posibles_resp.add(posResp2);
+        posibles_resp.add(posResp3);
+        
+    }
+
     public String getEnunciado() {
         return enunciado;
     }
