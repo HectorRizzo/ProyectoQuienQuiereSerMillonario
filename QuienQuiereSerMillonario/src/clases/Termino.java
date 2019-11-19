@@ -18,14 +18,6 @@ public class Termino {
         this.anio = anio;
         this.numTermino = numTermino;
     }
-
-    
-    
-    public Termino(int anio, Termino termino) {
-        this.anio = anio;
-        this.termino = termino;
-    }
-
     public int getAnio() {
         return anio;
     }
@@ -51,10 +43,10 @@ public class Termino {
 
     @Override
     public String toString() {
-        return "Termino{" + "anio=" + anio + ", termino=" + termino + '}';
+        return "Termino{" + "anio=" + anio + ", numTermino=" + numTermino + '}';
     }
-    
-    public void ingresarTermino(Termino termino){
+
+    public void ingresarTermino(int anio, int termino){
         
     }
     

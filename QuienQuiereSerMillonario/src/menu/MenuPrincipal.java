@@ -30,6 +30,7 @@ public class MenuPrincipal {
            opcion = sc.nextInt();
            //Con Switch se proporcionan los diferentes casos que pueden ocurrir y que hacer en caso que se ingrese a cada uno de ellos
            switch(opcion){
+               
              case 1:
                  //Se crea un objeto de tipo Configuracion para acceder al metodo menu dentro de Configuracion
                  Configuracion b = new Configuracion();
@@ -38,8 +39,15 @@ public class MenuPrincipal {
               case 2:
                 System.out.println("Nuevo Juego");
                 break;
-              case 3:
-                System.out.println("Reporte");
+              case 3:System.out.println("****************Reporte*********");
+                  System.out.println("Ingrese el termino academico: ");
+                  int termino=sc.nextInt();
+                  System.out.println("Ingrese codigo de materia: ");
+                  String materia=sc.nextLine();
+                  System.out.println("Ingrese paralelo: ");
+                  int paralelo= sc.nextInt();
+                  
+                  
                 break;
               case 4:
                 System.out.println("Salir");

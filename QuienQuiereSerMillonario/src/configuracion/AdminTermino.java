@@ -15,12 +15,22 @@ import java.util.Scanner;
  */
 public class AdminTermino {
     Scanner sc= new Scanner(System.in);
-    ArrayList <Termino> listaTermino=new ArrayList();
+    ArrayList <Termino> listaTermino;//inicializando
     //En esta opción se solicitará un objeto tipo Termino
     public void ingresarTermino(int anio, int numTermino){
+        listaTermino=new ArrayList<>();//declarando
         Termino ter= new Termino(anio,numTermino);
         listaTermino.add(ter);
+        System.out.println(listaTermino.size());
         
+        
+        
+    }
+    //metodo para mostrar los terminos ingresados al invocar el metodo principal de termino
+    public void mostrarTerminos(){
+        
+        
+       
     }
     
     //Esta opcion eliminará un objeto termino de la lista
@@ -62,6 +72,7 @@ public class AdminTermino {
                 System.out.println("Ingrese el número de término:");
                 int numTermino= sc.nextInt();
                 ingresarTermino(anio,numTermino);
+                mostrarTerminos();
                 break;
             case 2:
                 eliminarTermino();
