@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package quienquieresermillonario;
-
+import menu.MenuPrincipal;
 /**
  *
  * @author Daniel Zurita
@@ -15,7 +10,9 @@ public class QuienQuiereSerMillonario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Se creo un objeto de tipo MenuPrincipal para poder llamar al metodo Menu
+        MenuPrincipal a= new MenuPrincipal();
+        a.menu();
     }
     
 }
