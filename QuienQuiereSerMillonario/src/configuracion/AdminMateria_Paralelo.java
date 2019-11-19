@@ -77,7 +77,6 @@ public class AdminMateria_Paralelo {
                 if(opcionN.equals("Y")){
                     System.out.println("Ingrese la cantidad de niveles: ");
                      i.setNivel(sc.nextInt());  
-                     sc.next();
                 }
 
             }
@@ -115,7 +114,6 @@ public class AdminMateria_Paralelo {
         System.out.println(getLista_paralelo());
         System.out.println("Ingrese el numero del paralelo que desea eliminar ");
         int opcion=sc.nextInt();
-        sc.nextLine();
         //recorre la lista
         for(Paralelo j: lista_paralelo){
             if (j.getNum_paralelo()==opcion){
@@ -131,18 +129,15 @@ public class AdminMateria_Paralelo {
         System.out.println("1.- Ingresar materia\n 2.- Editar materia\n 3.- Desactivar materia\n 4.- Agregar paralelo\n 5.- Eliminar paralelo");
         System.out.println("Escoja una opción");
         int opcionMat=sc.nextInt();
-        sc.next();
         switch(opcionMat){
             case 1:
-                System.out.println("Ingresar Materia");
+               System.out.println("Ingresar Materia");
                 System.out.println("Ingrese código de la materia:");
                 String codMateria=sc.nextLine();
-                sc.next();
                 System.out.println("Ingrese nombre de la materia: ");
                 String nombreMateria= sc.nextLine();
                 System.out.println("Ingrese la cantidad de Niveles: ");
                 int niveles= sc.nextInt();
-                sc.next();
                 ingresarMateria(codMateria,nombreMateria,niveles);
                 break;
             case 2:
@@ -162,7 +157,6 @@ public class AdminMateria_Paralelo {
                 //falta que obtenga la materia y el termino, esto no se como hacerlo**
                 System.out.println("Ingrese el número del paralelo");
                 int numPar=sc.nextInt();
-                sc.next();
                 //agregarParalelo(Materia materia, Termino termino, numPar);
                 break;
             case 5:

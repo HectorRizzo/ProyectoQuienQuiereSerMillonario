@@ -55,15 +55,12 @@ public class AdminTermino {
         System.out.println("Administrar Termino Academico");
         System.out.println("1.- Ingresar término\n 2.- Eliminar término\n 3.- Configurar término para el juego");
         int opcionMenu=sc.nextInt();
-        sc.next();
         switch(opcionMenu){
             case 1:
                 System.out.println("Ingrese el año:");
                 int anio= sc.nextInt();
-                sc.next();
                 System.out.println("Ingrese el número de término:");
                 int numTermino= sc.nextInt();
-                sc.next();
                 ingresarTermino(anio,numTermino);
                 break;
             case 2:

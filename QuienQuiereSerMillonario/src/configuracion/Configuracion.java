@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Configuracion {
     Scanner sc= new Scanner(System.in);
-    int opcion =sc.nextInt();
+    
 
     /**
      *
@@ -27,8 +27,7 @@ public class Configuracion {
         System.out.println("4.Administrar preguntas");
         System.out.println("5.Salir");
         System.out.println("Seleccione una opcion: ");
-        opcion = sc.nextInt();
-        sc.nextLine();         
+        int opcion = sc.nextInt();      
         switch (opcion){
             case 1:
                 AdminTermino termino= new AdminTermino();

@@ -76,7 +76,6 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
         System.out.println("1.- Visualizar preguntas\n 2.- Agregar pregunta\n 3.- Eliminar pregunta");
         System.out.println("Ingrese su opción: ");
         int opcionPreg=sc.nextInt();
-        sc.next();
         switch(opcionPreg){
             case 1:
                 System.out.println("Visualizar preguntas");

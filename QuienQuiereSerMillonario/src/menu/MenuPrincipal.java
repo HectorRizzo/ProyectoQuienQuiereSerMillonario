@@ -19,7 +19,6 @@ public class MenuPrincipal {
     public void menu(){ 
            Scanner sc = new Scanner (System.in);
            int opcion = 1;
-           int opcion2 = 1;
            //Se usa un metodo while para que se ejecute el menu mientras la opcion ingresada sea distinta de 4, la cual indica salir del menu
            while (opcion !=4){
            System.out.println("******¿QUIEN QUIERE SER MILLONARIO?******");
@@ -29,7 +28,6 @@ public class MenuPrincipal {
            System.out.println("4.Salir");
            System.out.println("Seleccione una opcion: ");
            opcion = sc.nextInt();
-           sc.nextLine();
            //Con Switch se proporcionan los diferentes casos que pueden ocurrir y que hacer en caso que se ingrese a cada uno de ellos
            switch(opcion){
              case 1:
