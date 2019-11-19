@@ -128,19 +128,22 @@ public class AdminMateria_Paralelo {
         System.out.println("Administrar Materias y Paralelos");
         System.out.println("1.- Ingresar materia\n 2.- Editar materia\n 3.- Desactivar materia\n 4.- Agregar paralelo\n 5.- Eliminar paralelo");
         System.out.println("Escoja una opción");
+        
         int opcionMat=sc.nextInt();
         switch(opcionMat){
             case 1:
+               Scanner sc1=new Scanner(System.in);
                System.out.println("Ingresar Materia");
                 System.out.println("Ingrese código de la materia:");
-                String codMateria=sc.nextLine();
+                String codMateria=sc1.nextLine();
                 System.out.println("Ingrese nombre de la materia: ");
-                String nombreMateria= sc.nextLine();
+                String nombreMateria= sc1.nextLine();
                 System.out.println("Ingrese la cantidad de Niveles: ");
-                int niveles= sc.nextInt();
+                int niveles= sc1.nextInt();
                 ingresarMateria(codMateria,nombreMateria,niveles);
                 break;
             case 2:
+                
                 System.out.println("Editar Materia");
                 System.out.println("Ingrese el código de la materia a editar: ");
                 String codigo= sc.nextLine();
