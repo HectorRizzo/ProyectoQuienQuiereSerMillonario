@@ -19,6 +19,16 @@ public class Configuracion {
      *
      */
     public void menu() {
+        //Se pone el menu configuraciones
+        System.out.println("******OPCION 1: CONFIGURACIONES******");
+        System.out.println("1.Administrar terminos academicos");
+        System.out.println("2.Administrar materias y paralelos");
+        System.out.println("3.Administrar estudiantes");
+        System.out.println("4.Administrar preguntas");
+        System.out.println("5.Salir");
+        System.out.println("Seleccione una opcion: ");
+        opcion = sc.nextInt();
+        sc.nextLine();         
         switch (opcion){
             case 1:
                 AdminTermino termino= new AdminTermino();
