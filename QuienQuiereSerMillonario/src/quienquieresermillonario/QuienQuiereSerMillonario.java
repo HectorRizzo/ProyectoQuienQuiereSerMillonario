@@ -2,7 +2,7 @@ package quienquieresermillonario;
 import menu.MenuPrincipal;
 /**
  *
- * @author Daniel Zurita
+ * @author Michelle Mujica
  */
 public class QuienQuiereSerMillonario {
 

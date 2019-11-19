@@ -7,7 +7,7 @@ package clases;
 
 /**
  *
- * @author Daniel Zurita
+ * @author Michelle Mujica
  */
 public class Materia {
     private String codigo;

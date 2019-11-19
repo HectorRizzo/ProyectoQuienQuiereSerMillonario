@@ -7,7 +7,7 @@ package clases;
 
 /**
  *
- * @author Daniel Zurita
+ * @author Michelle Mujica
  */
 public class Estudiante {
     private int matricula;

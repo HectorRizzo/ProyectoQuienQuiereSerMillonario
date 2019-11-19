@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Daniel Zurita
+ * @author Michelle Mujica
  */
 public class Paralelo {
     private Termino termino;

@@ -9,13 +9,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Daniel Zurita
+ * @author Michelle Mujica
  */
 public class Pregunta {
     private String enunciado;
     private int nivel;
     private String resp_Correcta;
     private ArrayList<String> posibles_resp;
+    private Materia materia;
 
     //POSIBLES RESPUESTA NO LA PUSE COMO ARGUMENTO DEL CONSRTRUCTOR
     public Pregunta(String enunciado, int nivel, String resp_Correcta) {
