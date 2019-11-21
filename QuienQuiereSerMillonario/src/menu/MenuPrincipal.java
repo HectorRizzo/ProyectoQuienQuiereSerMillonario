@@ -7,6 +7,10 @@ package menu;
 
 import configuracion.AdminTermino;
 import configuracion.Configuracion;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -46,6 +50,7 @@ public class MenuPrincipal {
                   String materia=sc.nextLine();
                   System.out.println("Ingrese paralelo: ");
                   int paralelo= sc.nextInt();
+                  cargarArchivo();
                   
                   
                 break;
@@ -55,4 +60,23 @@ public class MenuPrincipal {
                     }
                     }
                     }
+    public void cargarArchivo(){
+        File file=null;
+        FileReader fr=null;
+        BufferedReader br=null;
+        try{
+            file= new File ("juegosRealizados.txt");
+            fr=new FileReader (file);
+            br=new BufferedReader(fr);
+            String linea;
+            while((linea=br.readLine())!=null)
+                System.out.println(linea);
+            
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+    }
 }

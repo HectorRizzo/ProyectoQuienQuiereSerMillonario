@@ -1,0 +1,3 @@
+fecha del juego,participante,nivel maximo alcanzado,paralelo
+01-01-2019,Martha Lopez,3,2
+02-02-2019,Pepito Torrez,4,3

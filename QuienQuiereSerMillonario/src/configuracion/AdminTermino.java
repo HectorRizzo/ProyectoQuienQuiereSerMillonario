@@ -21,14 +21,17 @@ public class AdminTermino {
         listaTermino=new ArrayList<>();//declarando
         Termino ter= new Termino(anio,numTermino);
         listaTermino.add(ter);
-        System.out.println(listaTermino.size());
+        
         
         
         
     }
     //metodo para mostrar los terminos ingresados al invocar el metodo principal de termino
     public void mostrarTerminos(){
-        
+        for (int i = 0; i <listaTermino.size(); i++) {
+            System.out.println(listaTermino.get(i).toString());
+            
+        }
         
        
     }
