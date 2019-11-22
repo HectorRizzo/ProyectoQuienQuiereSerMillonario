@@ -5,12 +5,17 @@
  */
 package menu;
 
-import configuracion.AdminTermino;
+import clases.Estudiante;
+import clases.Materia;
+import clases.Paralelo;
+import clases.Pregunta;
+import clases.Termino;
 import configuracion.Configuracion;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,9 +23,18 @@ import java.util.Scanner;
  * @author Fer Torres
  */
 public class MenuPrincipal {
+        ArrayList <Termino> listaTermino= new ArrayList();
+        ArrayList <Materia>  listaMateria= new ArrayList();
+        ArrayList <Paralelo> listaParalelo= new ArrayList();
+        ArrayList <Pregunta> listaPreguntas= new ArrayList();
+        ArrayList<Estudiante> listaEstudiantes= new ArrayList();
+
+    
    
     //Se crea el menu principal que tendra las opciones principales a escoger al iniciar el juego
     public void menu(){ 
+
+
            Scanner sc = new Scanner (System.in);
            int opcion = 1;
            //Se usa un metodo while para que se ejecute el menu mientras la opcion ingresada sea distinta de 4, la cual indica salir del menu
@@ -37,10 +51,11 @@ public class MenuPrincipal {
                
              case 1:
                  //Se crea un objeto de tipo Configuracion para acceder al metodo menu dentro de Configuracion
-                 Configuracion b = new Configuracion();
+                 Configuracion b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
                  b.menu();
                 break;
               case 2:
+                
                 System.out.println("Nuevo Juego");
                 break;
               case 3:System.out.println("****************Reporte*********");

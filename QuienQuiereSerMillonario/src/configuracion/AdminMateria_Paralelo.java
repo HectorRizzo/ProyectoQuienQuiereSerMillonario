@@ -19,12 +19,17 @@ public class AdminMateria_Paralelo {
     Scanner sc=new Scanner(System.in);
     private ArrayList <Materia> listaMateria;
     private ArrayList<Paralelo> lista_paralelo;
+    private ArrayList<Termino> listaTermino;
 
-    public AdminMateria_Paralelo() {
-    listaMateria= new ArrayList<> ();
-    //Añadido: lista de paralelos
-    lista_paralelo=new ArrayList<>();
+    
+
+    public AdminMateria_Paralelo(ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo,ArrayList <Termino> listaTermino) {
+        this.listaMateria = listaMateria;
+        this.lista_paralelo = lista_paralelo;
+        this.listaTermino= listaTermino;
     }
+
+    
     
     //getters
     
@@ -64,7 +69,7 @@ public class AdminMateria_Paralelo {
                 System.out.println("Desea editar el nombre? Y/N");
                 String opcionM=sc.nextLine();
                 
-                //Pregunta  y cambia el nombre
+                //Cambia el nombre
                 if(opcionM.equals("Y")){
                     System.out.println("Ingrese el nuevo nombre: ");
                      i.setNombre(sc.nextLine());
@@ -73,12 +78,14 @@ public class AdminMateria_Paralelo {
                 System.out.println("Desea editar la cantidad de niveles? Y/N");
                 String opcionN=sc.nextLine();
                 
-                //Pregunta  y cambia los niveles
+                //Cambia los niveles
                 if(opcionN.equals("Y")){
                     System.out.println("Ingrese la cantidad de niveles: ");
                      i.setNivel(sc.nextInt());  
                 }
 
+            }else{
+                System.out.println("Codigo no existente");
             }
             
         }
@@ -105,21 +112,30 @@ public class AdminMateria_Paralelo {
         0 y vacía respectivamente hasta que vea que se hace.
         */
         int numEstud=0;
-        ArrayList <Estudiante> listEstud=new ArrayList();
+       ArrayList <Estudiante> listEstud=new ArrayList();
        Paralelo par= new Paralelo(termino,materia,numEstud,num_paralelo,listEstud); 
        lista_paralelo.add(par);
+        
     }
     
     public void eliminarParalelo(){
-        System.out.println(getLista_paralelo());
-        System.out.println("Ingrese el numero del paralelo que desea eliminar ");
+        //muestra la lista de paralelos
+        int i=1;
+        for (Paralelo p:lista_paralelo){
+            System.out.println(i+": "+p);
+            i++;
+        }
+        System.out.println("Ingrese el numero del paralelo que desea eliminar ");  
+        sc.nextLine();
         int opcion=sc.nextInt();
         //recorre la lista
+        ArrayList <Paralelo> toRemove=new ArrayList();
         for(Paralelo j: lista_paralelo){
             if (j.getNum_paralelo()==opcion){
-                lista_paralelo.remove(j);
+                toRemove.add(j);
             }
         }
+        lista_paralelo.removeAll(toRemove);
     }
     //Menu de administrar materias y paralelos
     public void menuAdminMateria(){
@@ -156,11 +172,30 @@ public class AdminMateria_Paralelo {
                 editarMateria(codigoMat);
                 break;
             case 4:
+                Materia mat= new Materia();
+                Termino ter= new Termino(0,0);
                 System.out.println("Agregar paralelo");
-                //falta que obtenga la materia y el termino, esto no se como hacerlo**
+                System.out.println("Ingrese el codigo de la Materia: ");
+                sc.nextLine();
+                String cod_materia=sc.nextLine();
+                System.out.println("Ingrese el año: ");
+                int año=sc.nextInt();
+                System.out.println("Ingrese el numero del termino: ");
+                int num_termino= sc.nextInt();
                 System.out.println("Ingrese el número del paralelo");
                 int numPar=sc.nextInt();
-                //agregarParalelo(Materia materia, Termino termino, numPar);
+                for(Materia m: listaMateria){
+                    if(m.getCodigo().equals(cod_materia))
+                        mat=m;
+                }
+                for(Termino t: listaTermino){
+                    if(t.getAnio()==año && t.getNumTermino()==num_termino){
+                        ter=t;
+                    }
+                }
+                
+                agregarParalelo(mat, ter,numPar);
+                System.out.println("***Importante*** \n Debe copiar la lista de estudiantes de este paralelo en la carpeta: archivos");
                 break;
             case 5:
                 System.out.println("Eliminar Paralelo");

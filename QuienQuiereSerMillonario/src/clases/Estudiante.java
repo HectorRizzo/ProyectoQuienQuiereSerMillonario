@@ -10,21 +10,21 @@ package clases;
  * @author Michelle Mujica
  */
 public class Estudiante {
-    private int matricula;
+    private String matricula;
     private String nombre;
     private String email;
 
-    public Estudiante(int matricula, String nombre, String email) {
+    public Estudiante(String matricula, String nombre, String email) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.email = email;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

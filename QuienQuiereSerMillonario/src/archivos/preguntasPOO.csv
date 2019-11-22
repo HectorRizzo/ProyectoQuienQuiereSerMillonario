@@ -1,0 +1,16 @@
+enunciado,nivel,respuesta_correcta,respuesta_posible1,respuesta_posible2,respuesta_posible3
+¿Cuáles son tipos de datos primitivos para número enteros en JAVA?;1;byte,short,int,long;int,long,float,double;integer,double;int,float,double
+¿En qué paquete se encuentra la clase String?;1;java.lang;java.util;java.class;java.net
+¿Cuál es la clase Wrapper para el tipo primitivo char?;1;Character;Char;String;ChartAt
+Seleccione el código que crea un objeto tipo Scanner;1;new Scanner(System.in);new Scanner();new Scanner(System.out);new Scanner("in");
+Seleccione los pilares del paradigma orientado a objetos;1;Abstracción,Encapsulamiento,Herencia,Polimorfismo;Abstracción,Encapsulamiento,Herencia;Abstracción,Encapsulamiento,Herencia,Mantenibilidad;Abstracción,Encapsulamiento,Reusabilidad,Polimorfismo;
+Abstracción es:;2;Identificar las características escenciales;Enforcarse en el más pequeño detalle;Capacidad para comportarse diferente;Tener múltiples implementaciones
+Selecciones los pilares de POO presentes en una clase;2;Abstracción y Encapsulamiento;Abstracción y Herencia;Polimorfismo;Encapsulamiento y reusabilidad
+Cuál de los siguientes enunciados es FALSO respecto al constructor;2; tiene tipo de dato void;lleva el nombre de la clase;puede tener cualquier número de parámetros;crea e inicializa las variables del objeto
+Seleccione el enunciado verdadero respecto a sobrecarga de métodos;2;es la creación de varios métodos con el mismo nombre pero con diferente lista de tipos de parámetros;a creación de varios métodos con el mismo nombre pero con diferente tipo de retorno;es la creación de varios métodos que inician con nombre overload;es escribir un método con el igual nombre y parámetros pero cambiando el contenido
+La sección de memoria donde se almacenan los objetos es:;2;heap;stack;full;cache
+Sobreescritura es:;3;Proporcionar un código diferente a un método heredado;Escribir un nuevo método que inicie con nombre override_;Proceso por el cual una clase cambia sus atributos;Crear un constructor sin parámetros
+Seleccione el enunciado verdadero;3;Métodos estáticos no pueden sobreescribirse;Constructor protected se hereda;Siempre hay que escribir un constructor;Sólo métodos públicos se pueden sobreescribir
+La clase abstracta:;3;Puede tener o no métodos abstractos;Siempre tiene un método abstracto;Permiten crear instancias de esa clase;No puede ser heredada
+Una interfaz;3;Tiene sólo métodos abstractos y constantes;Tienen variables de instancia;Permiten crear instancias de la interfaz;Puede implementar otra interfaz
+Enlace dinámico es;3;el mecanismo en el cual la llamada a un método sobrescrito es resuelta en tiempo de ejecución;Cuando una variable se asocia a un tipo de una clase;Cuando se llama a un método sobreescrito;Cuando se llama a un método sobrecargado

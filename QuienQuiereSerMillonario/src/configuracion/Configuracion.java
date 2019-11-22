@@ -5,6 +5,12 @@
  */
 package configuracion;
 
+import clases.Estudiante;
+import clases.Materia;
+import clases.Paralelo;
+import clases.Pregunta;
+import clases.Termino;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,8 +19,22 @@ import java.util.Scanner;
  */
 public class Configuracion {
     Scanner sc= new Scanner(System.in);
-    
+    ArrayList <Termino> listaTermino;
+    ArrayList <Materia>  listaMateria;
+    ArrayList <Paralelo> listaParalelo;
+    ArrayList <Pregunta> listaPreguntas;
+    ArrayList <Estudiante> listaEstudiante;
 
+    public Configuracion(ArrayList<Termino> listaTermino, ArrayList<Materia> listaMateria, ArrayList<Paralelo> listaParalelo, ArrayList<Pregunta> listaPreguntas, ArrayList <Estudiante> listaEstudiantes) {
+        this.listaTermino = listaTermino;
+        this.listaMateria = listaMateria;
+        this.listaParalelo = listaParalelo;
+        this.listaPreguntas = listaPreguntas;
+        this.listaEstudiante= listaEstudiante;
+    }
+
+    
+    
     /**
      *
      */
@@ -30,18 +50,19 @@ public class Configuracion {
         int opcion = sc.nextInt();      
         switch (opcion){
             case 1:
-                AdminTermino termino= new AdminTermino();
+                AdminTermino termino= new AdminTermino(listaTermino);
                 termino.menuTermino();
                 break;
             case 2: 
-                AdminMateria_Paralelo adminMatPar= new AdminMateria_Paralelo();
+                AdminMateria_Paralelo adminMatPar= new AdminMateria_Paralelo(listaMateria,listaParalelo, listaTermino);
                 adminMatPar.menuAdminMateria();
                 break;
             case 3:
-                System.out.println("Administrar Estudiantes");
+                AdminEstudiante adminEstudiante= new AdminEstudiante(listaEstudiante);
+                adminEstudiante.menuAdminEstudiante();
                 break;
             case 4:
-                AdmPreguntas preguntas= new AdmPreguntas();
+                AdmPreguntas preguntas= new AdmPreguntas(listaPreguntas,listaMateria,listaParalelo,listaTermino);
                 preguntas.menuAdminPreguntas();
                 break;
                 
