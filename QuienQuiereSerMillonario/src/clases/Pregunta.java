@@ -15,18 +15,14 @@ public class Pregunta {
     private String enunciado;
     private int nivel;
     private String resp_Correcta;
-    private ArrayList<String> posibles_resp;
+    private ArrayList<String> posibles_resp=new ArrayList();
     private Materia materia;
 
     //POSIBLES RESPUESTA NO LA PUSE COMO ARGUMENTO DEL CONSRTRUCTOR
-    public Pregunta(String enunciado, int nivel, String resp_Correcta) {
-        this.enunciado = enunciado;
-        this.nivel = nivel;
-        this.resp_Correcta = resp_Correcta;
-    }
-
+    
     /**Constructor con posibles respuestas
      *
+     * @param materia
      * @param enunciado
      * @param nivel
      * @param resp_Correcta
@@ -34,7 +30,8 @@ public class Pregunta {
      * @param posResp2
      * @param posResp3
      */
-    public Pregunta(String enunciado, int nivel, String resp_Correcta, String posResp1, String posResp2,String posResp3) {
+    public Pregunta(Materia materia,String enunciado, int nivel, String resp_Correcta, String posResp1, String posResp2,String posResp3) {
+        this.materia=materia;
         this.enunciado = enunciado;
         this.nivel = nivel;
         this.resp_Correcta = resp_Correcta;
@@ -44,6 +41,21 @@ public class Pregunta {
         
     }
 
+    public ArrayList<String> getPosibles_resp() {
+        return posibles_resp;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setPosibles_resp(ArrayList<String> posibles_resp) {
+        this.posibles_resp = posibles_resp;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
     public String getEnunciado() {
         return enunciado;
     }

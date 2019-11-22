@@ -20,11 +20,14 @@ public class AdminMateria_Paralelo {
     private ArrayList <Materia> listaMateria;
     private ArrayList<Paralelo> lista_paralelo;
 
-    public AdminMateria_Paralelo() {
-    listaMateria= new ArrayList<> ();
-    //Añadido: lista de paralelos
-    lista_paralelo=new ArrayList<>();
+    
+
+    public AdminMateria_Paralelo(ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo) {
+        this.listaMateria = listaMateria;
+        this.lista_paralelo = lista_paralelo;
     }
+
+    
     
     //getters
     
@@ -64,7 +67,7 @@ public class AdminMateria_Paralelo {
                 System.out.println("Desea editar el nombre? Y/N");
                 String opcionM=sc.nextLine();
                 
-                //Pregunta  y cambia el nombre
+                //Cambia el nombre
                 if(opcionM.equals("Y")){
                     System.out.println("Ingrese el nuevo nombre: ");
                      i.setNombre(sc.nextLine());
@@ -73,12 +76,14 @@ public class AdminMateria_Paralelo {
                 System.out.println("Desea editar la cantidad de niveles? Y/N");
                 String opcionN=sc.nextLine();
                 
-                //Pregunta  y cambia los niveles
+                //Cambia los niveles
                 if(opcionN.equals("Y")){
                     System.out.println("Ingrese la cantidad de niveles: ");
                      i.setNivel(sc.nextInt());  
                 }
 
+            }else{
+                System.out.println("Codigo no existente");
             }
             
         }
@@ -105,21 +110,28 @@ public class AdminMateria_Paralelo {
         0 y vacía respectivamente hasta que vea que se hace.
         */
         int numEstud=0;
-        ArrayList <Estudiante> listEstud=new ArrayList();
+       ArrayList <Estudiante> listEstud=new ArrayList();
        Paralelo par= new Paralelo(termino,materia,numEstud,num_paralelo,listEstud); 
        lista_paralelo.add(par);
     }
     
     public void eliminarParalelo(){
-        System.out.println(getLista_paralelo());
-        System.out.println("Ingrese el numero del paralelo que desea eliminar ");
+        //muestra la lista de paralelos
+        int i=1;
+        for (Paralelo p:lista_paralelo){
+            System.out.println(i+": "+p);
+            i++;
+        }
+        System.out.println("Ingrese el numero del paralelo que desea eliminar ");       
         int opcion=sc.nextInt();
         //recorre la lista
+        ArrayList <Paralelo> toRemove=new ArrayList();
         for(Paralelo j: lista_paralelo){
             if (j.getNum_paralelo()==opcion){
-                lista_paralelo.remove(j);
+                toRemove.add(j);
             }
         }
+        lista_paralelo.removeAll(toRemove);
     }
     //Menu de administrar materias y paralelos
     public void menuAdminMateria(){

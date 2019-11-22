@@ -17,8 +17,12 @@ public class AdminTermino {
     Scanner sc= new Scanner(System.in);
     ArrayList <Termino> listaTermino;//inicializando
     //En esta opción se solicitará un objeto tipo Termino
+
+    public AdminTermino(ArrayList <Termino> listaTermino) {
+        this.listaTermino = listaTermino;
+    }
+    
     public void ingresarTermino(int anio, int numTermino){
-        listaTermino=new ArrayList<>();//declarando
         Termino ter= new Termino(anio,numTermino);
         listaTermino.add(ter);
         
@@ -28,36 +32,37 @@ public class AdminTermino {
     }
     //metodo para mostrar los terminos ingresados al invocar el metodo principal de termino
     public void mostrarTerminos(){
-        for (int i = 0; i <listaTermino.size(); i++) {
-            System.out.println(listaTermino.get(i).toString());
-            
-        }
-        
-       
+        int i=1;
+        for( Termino t: listaTermino){
+            System.out.println(i+": "+ t);
+            i++;
+        }              
     }
     
     //Esta opcion eliminará un objeto termino de la lista
     public void eliminarTermino(){
-        System.out.println(listaTermino);
+        mostrarTerminos();
+        sc.nextLine();
         System.out.println("Cual termino desea eliminar? \nIngrese el año y el numero en este formato: año-numero");
         String opcion=sc.nextLine();
         String[] partes=opcion.split("-");
-        int[] cadena={Integer.parseInt(partes[0],Integer.parseInt(partes[1]))};
+        ArrayList <Integer> cadena=new ArrayList();
+        cadena.add(Integer.parseInt(partes[0]));
+        cadena.add(Integer.parseInt(partes[1]));
+        ArrayList <Termino> toRemove= new ArrayList();
         for(Termino h: listaTermino){
-            if(h.getAnio()==cadena[0]&&h.getNumTermino()==cadena[1]){
-                listaTermino.remove(h);
+            if(h.getAnio()==cadena.get(0)&&h.getNumTermino()==cadena.get(1)){
+                toRemove.add(h);
             }
-        }
+        }listaTermino.removeAll(toRemove);
     }
     public Termino setTermino(){
         Termino termino = null;
-        System.out.println("Escoja el termino: ");
-        System.out.println(listaTermino);
-        String opcion=sc.nextLine();
-        String[] partes=opcion.split("-");
-        int[] cadena={Integer.parseInt(partes[0],Integer.parseInt(partes[1]))};
+        System.out.println("Escoja el numeral del termino: ");
+        mostrarTerminos();      
+        int opcion=sc.nextInt();
         for(Termino h: listaTermino){
-            if(h.getAnio()==cadena[0]&& h.getNumTermino()==cadena[1]){
+            if(h==listaTermino.get(opcion-1)){
                 termino=h;
             }
         }
@@ -79,8 +84,10 @@ public class AdminTermino {
                 break;
             case 2:
                 eliminarTermino();
+                break;
             case 3:
                 setTermino();
+                break;
         }
         
         

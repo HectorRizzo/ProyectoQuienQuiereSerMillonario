@@ -6,6 +6,7 @@
 package configuracion;
 
 import clases.Materia;
+import clases.Paralelo;
 import clases.Pregunta;
 import java.util.ArrayList;
 
@@ -16,37 +17,45 @@ import java.util.ArrayList;
  */
 public class AdmPreguntas extends AdminMateria_Paralelo {
     private ArrayList <Pregunta> listaPreguntas;
-    
+    /*private ArrayList <Materia> listaMateria;
+    private ArrayList <Paralelo> listaParalelo;*/
     //Constructor
-    public AdmPreguntas(){
-        listaPreguntas=new ArrayList<>();
+    public AdmPreguntas(ArrayList<Pregunta> listaPreguntas, ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo) {
+        super(listaMateria, lista_paralelo);
+        this.listaPreguntas = listaPreguntas;
     }
+
+
     //Agrega pregunta
     /**
      *
      * @param cod
      */
-    public void addPregunta(String cod){
+    public void addPregunta(String cod) {
         for(Materia i:getListaMateria()){
             if(i.getCodigo().equals(cod)){
-                System.out.println("Numero de niveles: "+ i.getNivel());
+                System.out.println("Numero de niveles posibles: "+ i.getNivel());
                 System.out.println("Ingrese el enunciado: ");
                 String enunciado=sc.nextLine();
-                int nivel=0;
-                do{
-                    System.out.println("Ingrese el nivel: ");
+              
+                System.out.println("Ingrese el nivel : ");
+                int nivel=sc.nextInt();
+                
+                while(1 > nivel || nivel>i.getNivel()){
+                    System.out.println("Ingrese el nivel correcto (mayor que 0 y menor o igual que el numero posible");
                     nivel=sc.nextInt();
-                    sc.next();
-                }while(1 > nivel || nivel>i.getNivel());
+                }
                 System.out.println("Ingrese la respuesta correcta: ");
+                sc.nextLine();
                 String respCorrecta=sc.nextLine();
-                System.out.println("Ingrese la 1 posible respuesta: ");
+                
+                System.out.println("Ingrese la 1° posible respuesta: ");
                 String posRespuesta1=sc.nextLine();
-                System.out.println("Ingrese la 2 posible respuesta: ");
+                System.out.println("Ingrese la 2° posible respuesta: ");
                 String posRespuesta2=sc.nextLine();
-                System.out.println("Ingrese la 3 posible respuesta: ");
+                System.out.println("Ingrese la 3° posible respuesta: ");
                 String posRespuesta3=sc.nextLine();
-                Pregunta pregunta=new Pregunta(enunciado,nivel,respCorrecta,posRespuesta1,posRespuesta2,posRespuesta3);
+                Pregunta pregunta=new Pregunta(i,enunciado,nivel,respCorrecta,posRespuesta1,posRespuesta2,posRespuesta3);
                 listaPreguntas.add(pregunta);
                 
             }   
@@ -60,12 +69,22 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
      * @param codMateria
      */
     public void verPregunta(String codMateria){
-        //falta relacionar las preguntas con una materia
-        System.out.println(listaPreguntas);     
+        ArrayList <Pregunta> preguntasToWatch=new ArrayList();
+        for(Pregunta p:listaPreguntas){
+            if((p.getMateria().getCodigo()).equals(codMateria)){
+                preguntasToWatch.add(p);
+            } else {
+            }
+        }
+        System.out.println(preguntasToWatch);     
     }
     //elimina pregunta
     public void eliminarPregunta(){
-        System.out.println(listaPreguntas);
+        int i=1;
+        for(Pregunta p: listaPreguntas){
+            System.out.println(i+ ") "+"Materia: "+p.getMateria().getNombre()+" ,Nivel: "+p.getNivel()+" , Enunciado: "+p.getEnunciado());
+            i++;
+        }
         System.out.println("Que pregunta desea eliminar?\n Ingrese la posición de la pregunta: ");
         int pos=sc.nextInt();
         listaPreguntas.remove(listaPreguntas.get(pos-1));
@@ -80,12 +99,14 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
             case 1:
                 System.out.println("Visualizar preguntas");
                 System.out.println("Ingrese el codigo de una materia: ");
+                sc.nextLine();
                 String codMateria=sc.nextLine();
                 verPregunta(codMateria);
                 break;
             case 2:
                 System.out.println("Agregar Pregunta");
                 System.out.println("Ingrese el codigo de la materia: ");
+                sc.nextLine();
                 String codigoMateria= sc.nextLine();
                 addPregunta(codigoMateria);
                 break;
