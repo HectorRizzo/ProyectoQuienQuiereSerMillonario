@@ -5,11 +5,13 @@
  */
 package menu;
 
+
 import clases.Estudiante;
 import clases.Materia;
 import clases.Paralelo;
 import clases.Pregunta;
 import clases.Termino;
+
 import configuracion.Configuracion;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +29,9 @@ public class MenuPrincipal {
         ArrayList <Materia>  listaMateria= new ArrayList();
         ArrayList <Paralelo> listaParalelo= new ArrayList();
         ArrayList <Pregunta> listaPreguntas= new ArrayList();
+
         ArrayList<Estudiante> listaEstudiantes= new ArrayList();
+
 
     
    
@@ -51,7 +55,9 @@ public class MenuPrincipal {
                
              case 1:
                  //Se crea un objeto de tipo Configuracion para acceder al metodo menu dentro de Configuracion
+
                  Configuracion b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
+
                  b.menu();
                 break;
               case 2:

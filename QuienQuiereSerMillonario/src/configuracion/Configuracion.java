@@ -6,6 +6,7 @@
 package configuracion;
 
 import clases.Estudiante;
+
 import clases.Materia;
 import clases.Paralelo;
 import clases.Pregunta;
@@ -23,6 +24,7 @@ public class Configuracion {
     ArrayList <Materia>  listaMateria;
     ArrayList <Paralelo> listaParalelo;
     ArrayList <Pregunta> listaPreguntas;
+
     ArrayList <Estudiante> listaEstudiante;
 
     public Configuracion(ArrayList<Termino> listaTermino, ArrayList<Materia> listaMateria, ArrayList<Paralelo> listaParalelo, ArrayList<Pregunta> listaPreguntas, ArrayList <Estudiante> listaEstudiantes) {
@@ -31,6 +33,7 @@ public class Configuracion {
         this.listaParalelo = listaParalelo;
         this.listaPreguntas = listaPreguntas;
         this.listaEstudiante= listaEstudiante;
+
     }
 
     
@@ -54,7 +57,9 @@ public class Configuracion {
                 termino.menuTermino();
                 break;
             case 2: 
+
                 AdminMateria_Paralelo adminMatPar= new AdminMateria_Paralelo(listaMateria,listaParalelo, listaTermino);
+
                 adminMatPar.menuAdminMateria();
                 break;
             case 3:
@@ -62,7 +67,11 @@ public class Configuracion {
                 adminEstudiante.menuAdminEstudiante();
                 break;
             case 4:
+
                 AdmPreguntas preguntas= new AdmPreguntas(listaPreguntas,listaMateria,listaParalelo,listaTermino);
+
+                
+
                 preguntas.menuAdminPreguntas();
                 break;
                 

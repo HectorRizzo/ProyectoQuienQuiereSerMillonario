@@ -21,8 +21,11 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
     /*private ArrayList <Materia> listaMateria;
     private ArrayList <Paralelo> listaParalelo;*/
     //Constructor
-    public AdmPreguntas(ArrayList<Pregunta> listaPreguntas, ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo,ArrayList <Termino> listaTermino) {
-        super(listaMateria, lista_paralelo,listaTermino);
+
+    
+    public AdmPreguntas(ArrayList<Pregunta> listaPreguntas, ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo, ArrayList <Termino> listaTermino) {
+        super(listaMateria, lista_paralelo, listaTermino);
+        
         this.listaPreguntas = listaPreguntas;
     }
 

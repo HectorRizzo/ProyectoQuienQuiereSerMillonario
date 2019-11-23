@@ -23,10 +23,12 @@ public class AdminMateria_Paralelo {
 
     
 
+
     public AdminMateria_Paralelo(ArrayList<Materia> listaMateria, ArrayList<Paralelo> lista_paralelo,ArrayList <Termino> listaTermino) {
         this.listaMateria = listaMateria;
         this.lista_paralelo = lista_paralelo;
         this.listaTermino= listaTermino;
+
     }
 
     
@@ -125,8 +127,12 @@ public class AdminMateria_Paralelo {
             System.out.println(i+": "+p);
             i++;
         }
+
         System.out.println("Ingrese el numero del paralelo que desea eliminar ");  
         sc.nextLine();
+
+        System.out.println("Ingrese el numero del paralelo que desea eliminar ");       
+
         int opcion=sc.nextInt();
         //recorre la lista
         ArrayList <Paralelo> toRemove=new ArrayList();

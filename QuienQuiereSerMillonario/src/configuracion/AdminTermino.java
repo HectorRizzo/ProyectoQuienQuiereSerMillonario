@@ -86,7 +86,9 @@ public class AdminTermino {
                 eliminarTermino();
                 break;
             case 3:
-                Termino termino_establecido=setTermino();
+
+                setTermino();
+
                 break;
         }
         
