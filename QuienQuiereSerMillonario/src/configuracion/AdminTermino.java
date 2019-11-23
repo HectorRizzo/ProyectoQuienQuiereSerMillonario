@@ -17,7 +17,7 @@ public class AdminTermino {
     Scanner sc= new Scanner(System.in);
     ArrayList <Termino> listaTermino;//inicializando
     //En esta opción se solicitará un objeto tipo Termino
-
+    
     public AdminTermino(ArrayList <Termino> listaTermino) {
         this.listaTermino = listaTermino;
     }

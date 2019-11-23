@@ -66,7 +66,7 @@ public class AdminMateria_Paralelo {
             
             //Comprueba si el codigo pertenece a alguna materia
             if(i.getCodigo().equals(codigo)){
-                
+                Scanner sc=new Scanner(System.in);
                 //Pregunta si desea editar el nombre
                 System.out.println("Desea editar el nombre? Y/N");
                 String opcionM=sc.nextLine();
@@ -98,8 +98,9 @@ public class AdminMateria_Paralelo {
         for(Materia h: listaMateria){
         //Confirmación
             if (h.getCodigo().equals(codigo)){
+                Scanner sc4=new Scanner(System.in);
                 System.out.println("Está seguro que desea desactivar la materia? (Y/N):");
-               if(sc.nextLine().equals("Y")){
+               if(sc4.nextLine().equals("Y")){
                 h.setEstado(false);
                }
             }
@@ -165,17 +166,18 @@ public class AdminMateria_Paralelo {
                 ingresarMateria(codMateria,nombreMateria,niveles);
                 break;
             case 2:
-                
+                Scanner sc2=new Scanner(System.in);
                 System.out.println("Editar Materia");
                 System.out.println("Ingrese el código de la materia a editar: ");
-                String codigo= sc.nextLine();
+                String codigo= sc2.nextLine();
                 editarMateria(codigo);
                 break;
             case 3:
+                Scanner sc3=new Scanner(System.in);
                 System.out.println("Desactivar materia");
                 System.out.println("Ingrese el codigo de la materia a desactivar: ");
-                String codigoMat=sc.nextLine();
-                editarMateria(codigoMat);
+                String codigoMat=sc3.nextLine();
+                desactivarMateria(codigoMat);
                 break;
             case 4:
                 Materia mat= new Materia();

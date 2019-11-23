@@ -8,6 +8,7 @@ package menu;
 
 import clases.Estudiante;
 import clases.Materia;
+import clases.NuevoJuego;
 import clases.Paralelo;
 import clases.Pregunta;
 import clases.Termino;
@@ -61,8 +62,9 @@ public class MenuPrincipal {
                  b.menu();
                 break;
               case 2:
-                
-                System.out.println("Nuevo Juego");
+                NuevoJuego nuevo= new NuevoJuego();
+                System.out.println("****Nuevo Juego****");
+                nuevo.iniciar();
                 break;
               case 3:System.out.println("****************Reporte*********");
                   System.out.println("Ingrese el termino academico: ");
