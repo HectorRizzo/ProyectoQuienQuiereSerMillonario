@@ -15,7 +15,7 @@ public class Paralelo {
     private Termino termino;
     private Materia materia;
     private int nun_estudiantes;
-    private int num_paralelo;
+    private String num_paralelo;
     
     private ArrayList<Estudiante> lista_est;
 
@@ -31,7 +31,7 @@ public class Paralelo {
      * @param num_paralelo
      * @param lista_est
      */
-    public Paralelo(Termino termino, Materia materia, int nun_estudiantes, int num_paralelo, ArrayList<Estudiante> lista_est) {
+    public Paralelo(Termino termino, Materia materia, int nun_estudiantes, String num_paralelo, ArrayList<Estudiante> lista_est) {
         this.termino = termino;
         this.materia = materia;
         this.nun_estudiantes = nun_estudiantes;
@@ -46,11 +46,11 @@ public class Paralelo {
         this.lista_est = lista_est;
     }
     //getters & setters
-    public int getNum_paralelo() {
+    public String getNum_paralelo() {
         return num_paralelo;
     }
 
-    public void setNum_paralelo(int num_paralelo) {
+    public void setNum_paralelo(String num_paralelo) {
         this.num_paralelo = num_paralelo;
     }
 
