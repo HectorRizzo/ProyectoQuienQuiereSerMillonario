@@ -9,7 +9,12 @@ import clases.Materia;
 import clases.Paralelo;
 import clases.Pregunta;
 import clases.Termino;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -27,8 +32,28 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
         super(listaMateria, lista_paralelo, listaTermino);
         
         this.listaPreguntas = listaPreguntas;
+        setearPreguntas();
     }
-
+    
+    private void setearPreguntas(){
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("/archivos/preguntasPOO.csv"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AdmPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int i = 0;
+        Materia materia = new Materia("POO","Programacion Orientada a Objetos", 3,true);
+        while(scanner.hasNext()){
+            if(i!=0){
+                String line = scanner.next();
+                String[] tokens = line.split(";");
+                this.listaPreguntas.add(new Pregunta(materia,tokens[0],Integer.parseInt(tokens[1]),tokens[2],tokens[3],tokens[4],tokens[5]));
+            }
+            i++;
+        }
+        scanner.close();
+    }
 
     //Agrega pregunta
     /**
