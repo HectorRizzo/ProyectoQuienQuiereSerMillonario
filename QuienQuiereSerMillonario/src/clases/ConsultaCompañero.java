@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package clases;
-
+import constantes.Constantes;
 import interfaces.Comodin;
 import static java.lang.Math.random;
 import java.util.Random;
@@ -15,6 +15,7 @@ import java.util.Random;
  */
 public class ConsultaCompañero implements Comodin {
     
+    private boolean usado;
     private Estudiante compañero;
 
     public ConsultaCompañero(Estudiante compañero) {
@@ -27,6 +28,14 @@ public class ConsultaCompañero implements Comodin {
 
     public void setCompañero(Estudiante compañero) {
         this.compañero = compañero;
+    }
+    
+    public boolean isUsado() {
+        return usado;
+    }
+
+    public void setUsado(boolean usado) {
+        this.usado = usado;
     }
     
     @Override
@@ -47,5 +56,9 @@ public class ConsultaCompañero implements Comodin {
                 System.out.println("Escoge la opción D");
                 break;
         }       
+    }
+    
+    public String toString(){
+        return Constantes.consultaCompañero;
     }
 }
