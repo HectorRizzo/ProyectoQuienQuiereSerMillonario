@@ -119,52 +119,56 @@ public class NuevoJuego {
     
     public void iniciar(){
         setComodines();
+        boolean derrota = false;
         for(Pregunta pregunta: this.preguntas){
-            Scanner sc = new Scanner(System.in);
-            boolean noAtendidaPregunta = true;
-            String eleccion="";
-            String respuesta="";
-            while(noAtendidaPregunta){
-                String[] respuestas = preguntaDetalle(pregunta);
-                System.out.println("Toque una letra para continuar {A,B,C,D} o {*} para escoger un comodin");
-                eleccion = sc.next();
-                if (eleccion.equals("*")){
-                    comodinDetalle();
-                }
-                else{
-                    switch(eleccion){
-                        case "A":
-                            respuesta = respuestas[0];
-                            break;
-                        case "B":
-                            respuesta = respuestas[1];
-                            break;
-                        case "C":
-                            respuesta = respuestas[2];
-                            break;
-                        case "D":
-                            respuesta = respuestas[3];
-                            break;
-                        default:
-                            respuesta = null;
-                            break;
-                            
-                    }
-                    noAtendidaPregunta=false;
-                }
-                if (respuesta == null){
-                    System.out.println("Ingreso de teclado erroneo");
-                }
-                else{
-                    if (pregunta.getResp_Correcta().equals(respuesta)){
-                        System.out.println("Respuesta Correcta");
+                Scanner sc = new Scanner(System.in);
+                boolean noAtendidaPregunta = true;
+                String eleccion="";
+                String respuesta="";
+                while(noAtendidaPregunta){
+                    String[] respuestas = preguntaDetalle(pregunta);
+                    System.out.println("Toque una letra para continuar {A,B,C,D} o {*} para escoger un comodin");
+                    eleccion = sc.next();
+                    if (eleccion.equals("*")){
+                        comodinDetalle();
                     }
                     else{
-                        System.out.println("Respuesta Incorrecta");
+                        switch(eleccion){
+                            case "A":
+                                respuesta = respuestas[0];
+                                break;
+                            case "B":
+                                respuesta = respuestas[1];
+                                break;
+                            case "C":
+                                respuesta = respuestas[2];
+                                break;
+                            case "D":
+                                respuesta = respuestas[3];
+                                break;
+                            default:
+                                respuesta = null;
+                                break;
+                        }
+                        noAtendidaPregunta=false;
+                    }
+                    if (respuesta == null){
+                        System.out.println("Ingreso de teclado erroneo");
+                        noAtendidaPregunta=true;
+                    }
+                    else{
+                        if (pregunta.getResp_Correcta().equals(respuesta)){
+                            System.out.println("Respuesta Correcta");
+                        }
+                        else{
+                            System.out.println("Respuesta Incorrecta");
+                            derrota = true;
+                            break;
+                        }
                     }
                 }
-            }
         }
-        System.out.println("Ha ganado exitosamente");
+        String mensaje = derrota ? "Has perdido" : "Has ganado"; 
+        System.out.println(mensaje);
     }
 }
