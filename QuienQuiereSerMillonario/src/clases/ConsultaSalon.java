@@ -4,16 +4,17 @@
  * and open the template in the editor.
  */
 package clases;
+import asbtractos.Comodin;
 import constantes.Constantes;
-import interfaces.Comodin;
+
 import java.util.Random;
 
 /**
  *
  * @author Feer
  */
-public class ConsultaSalon implements Comodin {
-    private boolean usado;
+public class ConsultaSalon extends Comodin {
+    
     private Paralelo paralelo;
 
     public Paralelo getParalelo() {
@@ -26,14 +27,6 @@ public class ConsultaSalon implements Comodin {
 
     public ConsultaSalon(Paralelo paralelo) {
         this.paralelo = paralelo;
-    }
-    
-    public boolean isUsado() {
-        return usado;
-    }
-
-    public void setUsado(boolean usado) {
-        this.usado = usado;
     }
     
     @Override

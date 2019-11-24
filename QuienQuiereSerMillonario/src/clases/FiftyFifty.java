@@ -5,17 +5,17 @@
  */
 package clases;
 
+import asbtractos.Comodin;
 import constantes.Constantes;
-import interfaces.Comodin;
+
 import java.util.Random;
 
 /**
  *
  * @author Feer
  */
-public class FiftyFifty implements Comodin {
+public class FiftyFifty extends Comodin {
     
-    private boolean usado;
     private Pregunta pregunta;
 
     public Pregunta getPregunta() {
@@ -28,15 +28,6 @@ public class FiftyFifty implements Comodin {
 
     public FiftyFifty(Pregunta pregunta) {
         this.pregunta = pregunta;
-        usado = false;
-    }
-
-    public boolean isUsado() {
-        return usado;
-    }
-
-    public void setUsado(boolean usado) {
-        this.usado = usado;
     }
     
     @Override

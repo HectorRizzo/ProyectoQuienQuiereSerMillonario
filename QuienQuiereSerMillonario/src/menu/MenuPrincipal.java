@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -62,10 +63,33 @@ public class MenuPrincipal {
                  b.menu();
                 break;
               case 2:
-                //NuevoJuego nuevo= new NuevoJuego();
-                System.out.println("****Nuevo Juego****");
-                //nuevo.iniciar();
-                break;
+                  System.out.println("****************Nuevo Juego*********");
+                  Materia materiaObjeto = null;
+                  while(materiaObjeto==null){
+                      System.out.println("Ingrese codigo de la materia: ");
+                      String codMateria = sc.next();
+                      materiaObjeto=filtrarCodigoMateria(codMateria);
+                  }
+                  Paralelo paraleloObjeto = null;
+                  while(paraleloObjeto==null){
+                      System.out.println("Ingrese número de paralelo: ");
+                      int codParalelo = sc.nextInt();
+                      paraleloObjeto=filtrarCodigoParalelo(codParalelo);
+                  }
+                  System.out.println("Ingrese número de nivel: ");
+                  int numNivel = sc.nextInt();
+                  System.out.println("Ingrese matricula de estudiante: ");
+                  String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
+                  NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante);
+                  System.out.println("Ingrese matricula de estudiante como compañero: ");
+                  String matEstudianteCompañero = matEstudiante;
+                  while(matEstudianteCompañero.equals(matEstudiante)){
+                      matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
+                  }
+                  nuevoJuego.setCompañero(matEstudianteCompañero);
+                  nuevoJuego.setPreguntas(listaPreguntas);
+                  nuevoJuego.iniciar();
+                    break;
               case 3:System.out.println("****************Reporte*********");
                   System.out.println("Ingrese el termino academico: ");
                   int termino=sc.nextInt();
@@ -101,5 +125,32 @@ public class MenuPrincipal {
             ex.printStackTrace();
         }
         
+    }
+    private Materia filtrarCodigoMateria(String codigo){
+        for(Materia materia: this.listaMateria){
+            if(materia.getCodigo().equals(codigo)){
+                return materia;
+            }
+        }
+        return null;
+    }
+    
+    private Paralelo filtrarCodigoParalelo(int codigo){
+        for(Paralelo paralelo: this.listaParalelo){
+            if(paralelo.getNum_paralelo()==codigo){
+                return paralelo;
+            }
+        }
+        return null;
+    }
+    
+    private String filtrarMatriculaEstudiante(Paralelo paralelo, String codigo){
+        for(Estudiante estudiante: paralelo.getLista_est()){
+            if(estudiante.getMatricula().equals(codigo)){
+                return codigo;
+            }
+        }
+        int aleatorio = new Random().nextInt(paralelo.getNun_estudiantes());
+        return paralelo.getLista_est().get(aleatorio).getMatricula();
     }
 }

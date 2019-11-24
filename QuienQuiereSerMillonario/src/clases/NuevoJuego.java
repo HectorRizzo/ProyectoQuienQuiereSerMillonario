@@ -5,8 +5,9 @@
  */
 package clases;
 
+import asbtractos.Comodin;
 import configuracion.AdminTermino;
-import interfaces.Comodin;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -84,25 +85,85 @@ public class NuevoJuego {
         this.participante = participante;
     }
     
-    private void preguntaDetalle(Pregunta pregunta){
-        String preguntas[] = {pregunta.getResp_Correcta(),pregunta.getPosibles_resp().get(0),pregunta.getPosibles_resp().get(1),pregunta.getPosibles_resp().get(2)};
-        List<String> newPreguntas = Arrays.asList(preguntas);
+    private String[] preguntaDetalle(Pregunta pregunta){
+        String respuestas[] = {pregunta.getResp_Correcta(),pregunta.getPosibles_resp().get(0),pregunta.getPosibles_resp().get(1),pregunta.getPosibles_resp().get(2)};
+        List<String> newPreguntas = Arrays.asList(respuestas);
         Collections.shuffle(newPreguntas);
-        newPreguntas.toArray(preguntas);
+        newPreguntas.toArray(respuestas);
         System.out.println("Pregunta: "+pregunta.getEnunciado());
-        System.out.println("A) "+preguntas[0]);
-        System.out.println("B) "+preguntas[1]);
-        System.out.println("C) "+preguntas[2]);
-        System.out.println("D) "+preguntas[3]);
+        System.out.println("A) "+respuestas[0]);
+        System.out.println("B) "+respuestas[1]);
+        System.out.println("C) "+respuestas[2]);
+        System.out.println("D) "+respuestas[3]);
+        
+        return respuestas;
     }
     
-    private void comodinDetalle(){}
+    private void comodinDetalle(){
+        System.out.println("Comodines disponibles:");
+        int conteo = 1;
+        for(Comodin comodin: this.comodines){
+            if (!comodin.isUsado()) {
+                System.out.println(""+conteo+") "+comodin);
+                conteo++;
+            }
+        }
+        System.out.println("Escoger comodin:");
+        Scanner sc = new Scanner(System.in);
+        int eleccion = sc.nextInt();
+        Comodin comodin = this.comodines.get(eleccion-1);
+        comodin.accion();
+        comodin.setUsado(true);
+        
+    }
     
     public void iniciar(){
+        setComodines();
         for(Pregunta pregunta: this.preguntas){
             Scanner sc = new Scanner(System.in);
-            preguntaDetalle(pregunta);
-            System.out.println("Toque una letra para continuar {A,B,C,D} o {*} para escoger un comodin");
+            boolean noAtendidaPregunta = true;
+            String eleccion="";
+            String respuesta="";
+            while(noAtendidaPregunta){
+                String[] respuestas = preguntaDetalle(pregunta);
+                System.out.println("Toque una letra para continuar {A,B,C,D} o {*} para escoger un comodin");
+                eleccion = sc.next();
+                if (eleccion.equals("*")){
+                    comodinDetalle();
+                }
+                else{
+                    switch(eleccion){
+                        case "A":
+                            respuesta = respuestas[0];
+                            break;
+                        case "B":
+                            respuesta = respuestas[1];
+                            break;
+                        case "C":
+                            respuesta = respuestas[2];
+                            break;
+                        case "D":
+                            respuesta = respuestas[3];
+                            break;
+                        default:
+                            respuesta = null;
+                            break;
+                            
+                    }
+                    noAtendidaPregunta=false;
+                }
+                if (respuesta == null){
+                    System.out.println("Ingreso de teclado erroneo");
+                }
+                else{
+                    if (pregunta.getResp_Correcta().equals(respuesta)){
+                        System.out.println("Respuesta Correcta");
+                    }
+                    else{
+                        System.out.println("Respuesta Incorrecta");
+                    }
+                }
+            }
         }
         System.out.println("Ha ganado exitosamente");
     }
