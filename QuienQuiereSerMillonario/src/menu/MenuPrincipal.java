@@ -64,6 +64,7 @@ public class MenuPrincipal {
                  this.terminoSeleccionado=b.getTerminoSeleccionado();
                 break;
               case 2:
+                  System.out.println("\n****IMPORTANTE****\n Asegurese de que esté configurada las materias, paralelos y exista un término establecido\n");
                   if(this.terminoSeleccionado==null){
                       System.out.println("No existe termino seleccionado");
                   }else{
@@ -143,7 +144,7 @@ public class MenuPrincipal {
     
     private Paralelo filtrarCodigoParalelo(int codigo){
         for(Paralelo paralelo: this.listaParalelo){
-            if(paralelo.getNum_paralelo()==codigo){
+            if(Integer.parseInt(paralelo.getNum_paralelo())==codigo){
                 return paralelo;
             }
         }

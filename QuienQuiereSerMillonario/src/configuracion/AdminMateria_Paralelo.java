@@ -108,16 +108,19 @@ public class AdminMateria_Paralelo {
         
     }
     
-    public void agregarParalelo( Materia materia, Termino termino,int num_paralelo){
+    public void agregarParalelo( Materia materia, Termino termino,String num_paralelo){
         /*añade el paralelo 
         Lo que ingresa el usuario solo es termino, materia y el numero del paralelo por lo cual
         falta el campo de numero de estudiante y la lista de estudiante. Mi sugerencia es dejarlo en 
         0 y vacía respectivamente hasta que vea que se hace.
         */
-        int numEstud=0;
-       ArrayList <Estudiante> listEstud=new ArrayList();
-       Paralelo par= new Paralelo(termino,materia,numEstud,num_paralelo,listEstud); 
+        ArrayList <Estudiante> listEstud=new ArrayList();
+        AdminEstudiante toListEstud= new AdminEstudiante(listEstud);
+        System.out.println("Ingrese el numero de estudiantes registrados en el paralelo: ");
+        int numEstud=sc.nextInt();
+       Paralelo par= new Paralelo(termino,materia,numEstud,num_paralelo,toListEstud.leerArchivo(materia.getCodigo(), num_paralelo, String.valueOf(termino.getAnio())+"-"+termino.getNumTermino())); 
        lista_paralelo.add(par);
+       
         
     }
     
@@ -134,11 +137,11 @@ public class AdminMateria_Paralelo {
 
         System.out.println("Ingrese el numero del paralelo que desea eliminar ");       
 
-        int opcion=sc.nextInt();
+        String opcion=sc.nextLine();
         //recorre la lista
         ArrayList <Paralelo> toRemove=new ArrayList();
         for(Paralelo j: lista_paralelo){
-            if (j.getNum_paralelo()==opcion){
+            if (j.getNum_paralelo().equals(opcion)){
                 toRemove.add(j);
             }
         }
@@ -180,6 +183,7 @@ public class AdminMateria_Paralelo {
                 desactivarMateria(codigoMat);
                 break;
             case 4:
+                System.out.println("***Importante*** \n Primero debe copiar la lista de estudiantes de este paralelo en la carpeta: archivos");
                 Materia mat= new Materia();
                 Termino ter= new Termino(0,0);
                 System.out.println("Agregar paralelo");
@@ -190,8 +194,9 @@ public class AdminMateria_Paralelo {
                 int año=sc.nextInt();
                 System.out.println("Ingrese el numero del termino: ");
                 int num_termino= sc.nextInt();
+                sc.nextLine();
                 System.out.println("Ingrese el número del paralelo");
-                int numPar=sc.nextInt();
+                String numPar=sc.nextLine();
                 for(Materia m: listaMateria){
                     if(m.getCodigo().equals(cod_materia))
                         mat=m;
@@ -203,7 +208,7 @@ public class AdminMateria_Paralelo {
                 }
                 
                 agregarParalelo(mat, ter,numPar);
-                System.out.println("***Importante*** \n Debe copiar la lista de estudiantes de este paralelo en la carpeta: archivos");
+                
                 break;
             case 5:
                 System.out.println("Eliminar Paralelo");

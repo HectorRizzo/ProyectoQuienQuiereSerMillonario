@@ -28,7 +28,7 @@ public class AdminEstudiante {
     private Termino termino;
     private Materia materia;
     private Paralelo paralelo;
-    private ArrayList <Estudiante> listaEstudiantes= new ArrayList();
+    private ArrayList <Estudiante> listaEstudiantes;
     private Estudiante estudiante;
     Scanner sc= new Scanner(System.in);
     
@@ -45,8 +45,8 @@ public class AdminEstudiante {
         String codMateria=sc.nextLine();
         System.out.println("Ingrese el paralelo: ");
         String par=sc.nextLine();
-        listaEstudiantes=leerArchivo(codMateria,par,ter,listaEstudiantes);
-       for(Estudiante e: listaEstudiantes){
+        ArrayList <Estudiante> listEstudiantes=leerArchivo(codMateria,par,ter);
+       for(Estudiante e: listEstudiantes){
            System.out.println("Nombre: "+e.getNombre()+" Matrícula: "+e.getMatricula()+" Correo: "+e.getEmail());
        }
     }
@@ -66,19 +66,24 @@ public class AdminEstudiante {
      * @param materia
      * @param paralelo
      * @param termino
+     * @return 
      */
-    private ArrayList leerArchivo(String materia,String paralelo, String termino, ArrayList <Estudiante> listaEstudiante) {
+    public ArrayList leerArchivo(String materia,String paralelo, String termino) {
         BufferedReader csvReader = null;
+        ArrayList <Estudiante> listaEstudiante= new ArrayList();
         try {                     
             String ruta = "src/archivos/"+materia+"-"+paralelo+"-"+termino+".csv";
             csvReader = new BufferedReader(new FileReader(ruta));
             String fila = csvReader.readLine();//escapar cabecera de archivo
+            ArrayList <Estudiante> toAddEstudiante= new ArrayList();
+
             while ((fila = csvReader.readLine()) != null) { //iterar en el contenido del archivo
                 String[] data = fila.split(",");
                 Estudiante est=new Estudiante(data[0],data[1],data[2]);
-                listaEstudiantes.add(est); //crear objeto y agregar a lista
+                toAddEstudiante.add(est); //crear objeto y agregar a lista
 
             }
+            listaEstudiante.addAll(toAddEstudiante);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EjemploProyecto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -90,7 +95,7 @@ public class AdminEstudiante {
                 Logger.getLogger(EjemploProyecto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return listaEstudiantes;
+        return listaEstudiante;
     }
     
     
