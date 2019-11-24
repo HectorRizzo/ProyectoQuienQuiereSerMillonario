@@ -62,9 +62,9 @@ public class MenuPrincipal {
                  b.menu();
                 break;
               case 2:
-                NuevoJuego nuevo= new NuevoJuego();
+                //NuevoJuego nuevo= new NuevoJuego();
                 System.out.println("****Nuevo Juego****");
-                nuevo.iniciar();
+                //nuevo.iniciar();
                 break;
               case 3:System.out.println("****************Reporte*********");
                   System.out.println("Ingrese el termino academico: ");
