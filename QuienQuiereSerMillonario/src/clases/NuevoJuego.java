@@ -46,6 +46,7 @@ public class NuevoJuego {
         for(Pregunta pregunta: preguntas){
             if (pregunta.getMateria().getCodigo().equals(this.materia.getCodigo())) this.preguntas.add(pregunta);
         }
+        System.out.println(this.preguntas);
     }
     private void setComodines(){
         this.comodines.add(new FiftyFifty(this.pregunta));
@@ -56,6 +57,7 @@ public class NuevoJuego {
         for(Estudiante estudiante: this.paralelo.getLista_est()){
             if (estudiante.getMatricula().equals(busqueda)) this.compañero=estudiante;
         }
+        System.out.println(this.compañero);
     }
     public void setMateria(Materia materia) {
         this.materia = materia;
@@ -121,6 +123,8 @@ public class NuevoJuego {
         setComodines();
         boolean derrota = false;
         for(Pregunta pregunta: this.preguntas){
+                FiftyFifty comodin = (FiftyFifty) this.comodines.get(0);
+                comodin.setPregunta(pregunta);
                 Scanner sc = new Scanner(System.in);
                 boolean noAtendidaPregunta = true;
                 String eleccion="";
