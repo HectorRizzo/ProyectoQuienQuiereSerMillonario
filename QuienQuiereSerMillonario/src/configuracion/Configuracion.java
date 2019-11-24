@@ -24,7 +24,7 @@ public class Configuracion {
     ArrayList <Materia>  listaMateria;
     ArrayList <Paralelo> listaParalelo;
     ArrayList <Pregunta> listaPreguntas;
-
+    Termino terminoSeleccionado;
     ArrayList <Estudiante> listaEstudiante;
 
     public Configuracion(ArrayList<Termino> listaTermino, ArrayList<Materia> listaMateria, ArrayList<Paralelo> listaParalelo, ArrayList<Pregunta> listaPreguntas, ArrayList <Estudiante> listaEstudiantes) {
@@ -34,6 +34,14 @@ public class Configuracion {
         this.listaPreguntas = listaPreguntas;
         this.listaEstudiante= listaEstudiante;
 
+    }
+
+    public Termino getTerminoSeleccionado() {
+        return terminoSeleccionado;
+    }
+
+    public void setTerminoSeleccionado(Termino terminoSeleccionado) {
+        this.terminoSeleccionado = terminoSeleccionado;
     }
 
     
@@ -55,6 +63,7 @@ public class Configuracion {
             case 1:
                 AdminTermino termino= new AdminTermino(listaTermino);
                 termino.menuTermino();
+                this.terminoSeleccionado=termino.getTerminoSeleccionado();
                 break;
             case 2: 
 

@@ -31,7 +31,7 @@ public class MenuPrincipal {
         ArrayList <Materia>  listaMateria= new ArrayList();
         ArrayList <Paralelo> listaParalelo= new ArrayList();
         ArrayList <Pregunta> listaPreguntas= new ArrayList();
-
+        Termino terminoSeleccionado = null;
         ArrayList<Estudiante> listaEstudiantes= new ArrayList();
 
 
@@ -61,34 +61,40 @@ public class MenuPrincipal {
                  Configuracion b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
 
                  b.menu();
+                 this.terminoSeleccionado=b.getTerminoSeleccionado();
                 break;
               case 2:
-                  System.out.println("****************Nuevo Juego*********");
-                  Materia materiaObjeto = null;
-                  while(materiaObjeto==null){
-                      System.out.println("Ingrese codigo de la materia: ");
-                      String codMateria = sc.next();
-                      materiaObjeto=filtrarCodigoMateria(codMateria);
+                  if(this.terminoSeleccionado==null){
+                      System.out.println("No existe termino seleccionado");
+                  }else{
+                      System.out.println("****************Nuevo Juego*********");
+                        Materia materiaObjeto = null;
+                        while(materiaObjeto==null){
+                            System.out.println("Ingrese codigo de la materia: ");
+                            String codMateria = sc.next();
+                            materiaObjeto=filtrarCodigoMateria(codMateria);
+                        }
+                        Paralelo paraleloObjeto = null;
+                        while(paraleloObjeto==null){
+                            System.out.println("Ingrese número de paralelo: ");
+                            int codParalelo = sc.nextInt();
+                            paraleloObjeto=filtrarCodigoParalelo(codParalelo);
+                        }
+                        System.out.println("Ingrese número de nivel: ");
+                        int numNivel = sc.nextInt();
+                        System.out.println("Ingrese matricula de estudiante: ");
+                        String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
+                        NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante);
+                        System.out.println("Ingrese matricula de estudiante como compañero: ");
+                        String matEstudianteCompañero = matEstudiante;
+                        while(matEstudianteCompañero.equals(matEstudiante)){
+                            matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
+                        }
+                        nuevoJuego.setCompañero(matEstudianteCompañero);
+                        nuevoJuego.setPreguntas(listaPreguntas);
+                        nuevoJuego.iniciar();
                   }
-                  Paralelo paraleloObjeto = null;
-                  while(paraleloObjeto==null){
-                      System.out.println("Ingrese número de paralelo: ");
-                      int codParalelo = sc.nextInt();
-                      paraleloObjeto=filtrarCodigoParalelo(codParalelo);
-                  }
-                  System.out.println("Ingrese número de nivel: ");
-                  int numNivel = sc.nextInt();
-                  System.out.println("Ingrese matricula de estudiante: ");
-                  String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
-                  NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante);
-                  System.out.println("Ingrese matricula de estudiante como compañero: ");
-                  String matEstudianteCompañero = matEstudiante;
-                  while(matEstudianteCompañero.equals(matEstudiante)){
-                      matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
-                  }
-                  nuevoJuego.setCompañero(matEstudianteCompañero);
-                  nuevoJuego.setPreguntas(listaPreguntas);
-                  nuevoJuego.iniciar();
+                  
                     break;
               case 3:System.out.println("****************Reporte*********");
                   System.out.println("Ingrese el termino academico: ");

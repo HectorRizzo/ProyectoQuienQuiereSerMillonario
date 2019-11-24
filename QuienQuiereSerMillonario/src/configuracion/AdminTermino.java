@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class AdminTermino {
     Scanner sc= new Scanner(System.in);
     ArrayList <Termino> listaTermino;//inicializando
+    Termino terminoSeleccionado;
     //En esta opción se solicitará un objeto tipo Termino
     
     public AdminTermino(ArrayList <Termino> listaTermino) {
@@ -56,7 +57,7 @@ public class AdminTermino {
             }
         }listaTermino.removeAll(toRemove);
     }
-    public Termino setTermino(){
+    public void setTermino(){
         Termino termino = null;
         System.out.println("Escoja el numeral del termino: ");
         mostrarTerminos();      
@@ -66,7 +67,15 @@ public class AdminTermino {
                 termino=h;
             }
         }
-        return termino;
+        this.terminoSeleccionado = termino;
+    }
+
+    public Termino getTerminoSeleccionado() {
+        return terminoSeleccionado;
+    }
+
+    public void setTerminoSeleccionado(Termino terminoSeleccionado) {
+        this.terminoSeleccionado = terminoSeleccionado;
     }
     //menu de termino
     public void menuTermino(){
