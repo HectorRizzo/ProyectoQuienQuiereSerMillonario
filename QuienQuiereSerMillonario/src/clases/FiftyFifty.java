@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class FiftyFifty extends Comodin {
     
-    private Pregunta pregunta;
+    private Pregunta pregunta; //comodin que depende de la pregunta
 
     public Pregunta getPregunta() {
         return pregunta;
@@ -31,7 +31,7 @@ public class FiftyFifty extends Comodin {
     }
     
     @Override
-    public void accion() {
+    public void accion() {//metodo que descarta 2 opciones malas y deja solo 1 posible respuesta y su respuesta
         int eleccion = new Random().nextInt(3);
         int orden = new Random().nextInt(2);
         StringBuilder sb = new StringBuilder("Las posibles respuestas pueden ser:");

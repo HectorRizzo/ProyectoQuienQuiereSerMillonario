@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class ConsultaSalon extends Comodin {
     
-    private Paralelo paralelo;
+    private Paralelo paralelo; //comodin que depende del paralelo
 
     public Paralelo getParalelo() {
         return paralelo;
@@ -30,10 +30,10 @@ public class ConsultaSalon extends Comodin {
     }
     
     @Override
-    public void accion() {
+    public void accion() { //metodo que realizara la eleccion de la mejor respuesta de acuerdo a votos
         int listado[] = new int[4];
         this.paralelo.getLista_est().forEach((_item) -> {
-            int eleccion = new Random().nextInt(4);
+            int eleccion = new Random().nextInt(4); //cada estudiante del paralelo asignara su voto a un espacio del arreglo
             switch(eleccion){
                 case 1:
                     listado[0]+=1;
@@ -51,14 +51,14 @@ public class ConsultaSalon extends Comodin {
         });
         int minVal = -532458748;
         int index=0;
-        for(int val=0;val<listado.length; val++){
+        for(int val=0;val<listado.length; val++){ //se obtiene el mayor de la lista con su indice
             if (listado[val]>minVal) {
                 minVal=listado[val];
                 index=val;
                 
             }
         }
-        switch(index){
+        switch(index){ //se imprime al jugador la opcion mas solicitada
             case 0:
                 System.out.println("El salon opina que escojas opción A");
                 break;

@@ -66,34 +66,34 @@ public class MenuPrincipal {
               case 2:
                   System.out.println("\n****IMPORTANTE****\n Asegurese de que esté configurada las materias, paralelos y exista un término establecido\n");
                   if(this.terminoSeleccionado==null){
-                      System.out.println("No existe termino seleccionado");
+                      System.out.println("No existe termino seleccionado"); //No me permite acceder a la opción si no hay un termino
                   }else{
                       System.out.println("****************Nuevo Juego*********");
-                        Materia materiaObjeto = null;
+                        Materia materiaObjeto = null; 
                         while(materiaObjeto==null){
-                            System.out.println("Ingrese codigo de la materia: ");
+                            System.out.println("Ingrese codigo de la materia: "); //Se pide por consola el codigo de la materia
                             String codMateria = sc.next();
-                            materiaObjeto=filtrarCodigoMateria(codMateria);
+                            materiaObjeto=filtrarCodigoMateria(codMateria); //se filtra en la lista de materias hasta encontrar la primera incidencia
                         }
                         Paralelo paraleloObjeto = null;
                         while(paraleloObjeto==null){
-                            System.out.println("Ingrese número de paralelo: ");
+                            System.out.println("Ingrese número de paralelo: ");//se pide por consola el codigo del paralelo (numero)
                             int codParalelo = sc.nextInt();
-                            paraleloObjeto=filtrarCodigoParalelo(codParalelo);
+                            paraleloObjeto=filtrarCodigoParalelo(codParalelo);// se filtra en la lista de paralelos hasta encontrar la primera incidencia
                         }
-                        System.out.println("Ingrese número de nivel: ");
+                        System.out.println("Ingrese número de nivel: ");//se pide el numero de nivel
                         int numNivel = sc.nextInt();
-                        System.out.println("Ingrese matricula de estudiante: ");
-                        String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
-                        NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante);
-                        System.out.println("Ingrese matricula de estudiante como compañero: ");
+                        System.out.println("Ingrese matricula de estudiante: ");//Se pide por consola la matricula del estudiante
+                        String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next()); //se filtra hasta encontrar la primera incidencia
+                        NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante); //se crea un Nuevo Juego
+                        System.out.println("Ingrese matricula de estudiante como compañero: ");//Se pide ingresar la matricula del quien sera compañero del participante
                         String matEstudianteCompañero = matEstudiante;
                         while(matEstudianteCompañero.equals(matEstudiante)){
-                            matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());
+                            matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());//Se filtra hasta encontrar al estudiante compañero
                         }
-                        nuevoJuego.setCompañero(matEstudianteCompañero);
-                        nuevoJuego.setPreguntas(listaPreguntas);
-                        nuevoJuego.iniciar();
+                        nuevoJuego.setCompañero(matEstudianteCompañero); //se asigna al compañero al nuevo juego
+                        nuevoJuego.setPreguntas(listaPreguntas); //se setea la lista de preguntas
+                        nuevoJuego.iniciar(); //se inicia el nuevo juego
                   }
                   
                     break;
@@ -133,7 +133,7 @@ public class MenuPrincipal {
         }
         
     }
-    private Materia filtrarCodigoMateria(String codigo){
+    private Materia filtrarCodigoMateria(String codigo){//metodo para filtrar materias
         for(Materia materia: this.listaMateria){
             if(materia.getCodigo().equals(codigo)){
                 return materia;
@@ -142,7 +142,7 @@ public class MenuPrincipal {
         return null;
     }
     
-    private Paralelo filtrarCodigoParalelo(int codigo){
+    private Paralelo filtrarCodigoParalelo(int codigo){//metodo para filtrar paralelos
         for(Paralelo paralelo: this.listaParalelo){
             if(Integer.parseInt(paralelo.getNum_paralelo())==codigo){
                 return paralelo;
@@ -151,7 +151,7 @@ public class MenuPrincipal {
         return null;
     }
     
-    private String filtrarMatriculaEstudiante(Paralelo paralelo, String codigo){
+    private String filtrarMatriculaEstudiante(Paralelo paralelo, String codigo){//metodo para filtrar estudiantes
         for(Estudiante estudiante: paralelo.getLista_est()){
             if(estudiante.getMatricula().equals(codigo)){
                 return codigo;

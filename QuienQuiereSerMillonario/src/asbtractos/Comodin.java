@@ -9,9 +9,9 @@ package asbtractos;
  *
  * @author Feer
  */
-public abstract class Comodin {
+public abstract class Comodin { // clase abstracta comodin
     
-    private boolean usado;
+    private boolean usado;//booleano que determina si el comodin ha sido usado o no
     
     public Comodin(){
         this.usado=false;
@@ -25,5 +25,5 @@ public abstract class Comodin {
         this.usado = usado;
     }
     
-    public abstract void accion();
+    public abstract void accion(); //metodo que implementaran las clases hijas
 }

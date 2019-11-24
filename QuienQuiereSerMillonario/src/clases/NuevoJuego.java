@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @author Daniel Zurita
  */
 public class NuevoJuego {
-    
+    //clase de Nuevo Juego con sus atributos
     private Materia materia;
     private Paralelo paralelo;
     private int numeroPreguntaNivel;
@@ -32,9 +32,9 @@ public class NuevoJuego {
         this.materia = materia;
         this.paralelo = paralelo;
         this.numeroPreguntaNivel = numeroPreguntaNivel;
-        seleccionarEstudiante(busqueda);
+        seleccionarEstudiante(busqueda);// se llama funcion para asignar participante de acuerdo a su busqueda
     }
-    public void seleccionarEstudiante(String busqueda){
+    public void seleccionarEstudiante(String busqueda){ //busca en la lista si existe ese estudiante caso contrario se devuelve null
         for(Estudiante estudiante: this.paralelo.getLista_est()){
             if (estudiante.getMatricula().equals(busqueda)) participante=estudiante;
         }    
@@ -42,18 +42,18 @@ public class NuevoJuego {
     public Materia getMateria() {
         return materia;
     }
-    public void setPreguntas(ArrayList<Pregunta> preguntas){
+    public void setPreguntas(ArrayList<Pregunta> preguntas){//se asigna las preguntas de acuerdo al banco de preguntas y si pertenecen a la materia
         for(Pregunta pregunta: preguntas){
             if (pregunta.getMateria().getCodigo().equals(this.materia.getCodigo())) this.preguntas.add(pregunta);
         }
         System.out.println(this.preguntas);
     }
-    private void setComodines(){
-        this.comodines.add(new FiftyFifty(this.pregunta));
-        this.comodines.add(new ConsultaCompañero(this.compañero));
-        this.comodines.add(new ConsultaSalon(this.paralelo));
+    private void setComodines(){ //Se setean en una lista los 3 tipos de comodines
+        this.comodines.add(new FiftyFifty(this.pregunta));//50/50
+        this.comodines.add(new ConsultaCompañero(this.compañero));//consulta compañero
+        this.comodines.add(new ConsultaSalon(this.paralelo));//consulta al salon
     }
-    public void setCompañero(String busqueda){
+    public void setCompañero(String busqueda){//se setea al compañero
         for(Estudiante estudiante: this.paralelo.getLista_est()){
             if (estudiante.getMatricula().equals(busqueda)) this.compañero=estudiante;
         }
@@ -87,7 +87,7 @@ public class NuevoJuego {
         this.participante = participante;
     }
     
-    private String[] preguntaDetalle(Pregunta pregunta){
+    private String[] preguntaDetalle(Pregunta pregunta){//metodo que imprime por pantalla la pregunta y sus posibles respuestas
         String respuestas[] = {pregunta.getResp_Correcta(),pregunta.getPosibles_resp().get(0),pregunta.getPosibles_resp().get(1),pregunta.getPosibles_resp().get(2)};
         List<String> newPreguntas = Arrays.asList(respuestas);
         Collections.shuffle(newPreguntas);
@@ -101,7 +101,7 @@ public class NuevoJuego {
         return respuestas;
     }
     
-    private void comodinDetalle(){
+    private void comodinDetalle(){ // metodo que devuelve los comodines disponibles para el estudiante
         System.out.println("Comodines disponibles:");
         int conteo = 1;
         for(Comodin comodin: this.comodines){
@@ -110,7 +110,7 @@ public class NuevoJuego {
                 conteo++;
             }
         }
-        System.out.println("Escoger comodin:");
+        System.out.println("Escoger comodin:");// me permite escoger comodin y cambiar su estado a usado
         Scanner sc = new Scanner(System.in);
         int eleccion = sc.nextInt();
         Comodin comodin = this.comodines.get(eleccion-1);
@@ -120,16 +120,16 @@ public class NuevoJuego {
     }
     
     public void iniciar(){
-        setComodines();
-        boolean derrota = false;
+        setComodines(); // se setean los comodines
+        boolean derrota = false; // se setea un bandera para saber si fue derrotado o no el jugador
         for(Pregunta pregunta: this.preguntas){
                 FiftyFifty comodin = (FiftyFifty) this.comodines.get(0);
-                comodin.setPregunta(pregunta);
+                comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
                 Scanner sc = new Scanner(System.in);
                 boolean noAtendidaPregunta = true;
                 String eleccion="";
                 String respuesta="";
-                while(noAtendidaPregunta){
+                while(noAtendidaPregunta){//while para mantener en caso de que no se haya respondido a la pregunta
                     String[] respuestas = preguntaDetalle(pregunta);
                     System.out.println("Toque una letra para continuar {A,B,C,D} o {*} para escoger un comodin");
                     eleccion = sc.next();
@@ -137,7 +137,7 @@ public class NuevoJuego {
                         comodinDetalle();
                     }
                     else{
-                        switch(eleccion){
+                        switch(eleccion){//jugador procede a seleccionar las opciones entre a b c d
                             case "A":
                                 respuesta = respuestas[0];
                                 break;
@@ -161,8 +161,8 @@ public class NuevoJuego {
                         noAtendidaPregunta=true;
                     }
                     else{
-                        if (pregunta.getResp_Correcta().equals(respuesta)){
-                            System.out.println("Respuesta Correcta");
+                        if (pregunta.getResp_Correcta().equals(respuesta)){//si la respuesta escogida es misma a la de la respuesta correcta de la pregunta
+                            System.out.println("Respuesta Correcta");//Jugador continua
                         }
                         else{
                             System.out.println("Respuesta Incorrecta");
@@ -172,7 +172,7 @@ public class NuevoJuego {
                     }
                 }
         }
-        String mensaje = derrota ? "Has perdido" : "Has ganado"; 
+        String mensaje = derrota ? "Has perdido" : "Has ganado"; //determinar el tipo de mensaje a lanzarse
         System.out.println(mensaje);
     }
 }

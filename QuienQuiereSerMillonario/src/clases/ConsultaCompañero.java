@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class ConsultaCompañero extends Comodin {
     
-    private Estudiante compañero;
+    private Estudiante compañero; //comodin que depende del compañero del participante
 
     public ConsultaCompañero(Estudiante compañero) {
         this.compañero = compañero;
@@ -32,7 +32,7 @@ public class ConsultaCompañero extends Comodin {
 
     
     @Override
-    public void accion(){
+    public void accion(){ //metodo que devuelve una respuesta sugerida por el compañero
         System.out.println("Yo "+this.compañero.getNombre()+" voy a ayudarte");
         int respuestaInteger = new Random().nextInt(4);
         switch(respuestaInteger){
