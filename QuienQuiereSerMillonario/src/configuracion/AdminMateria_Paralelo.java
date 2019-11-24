@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class AdminMateria_Paralelo {
     Scanner sc=new Scanner(System.in);
-    private ArrayList <Materia> listaMateria;
+    ArrayList <Materia> listaMateria;
     private ArrayList<Paralelo> lista_paralelo;
     private ArrayList<Termino> listaTermino;
 

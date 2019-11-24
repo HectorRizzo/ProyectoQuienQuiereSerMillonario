@@ -5,12 +5,18 @@
  */
 package configuracion;
 
+import clases.Estudiante;
 import clases.Materia;
 import clases.Paralelo;
 import clases.Pregunta;
 import clases.Termino;
+import ejemploproyecto.EjemploProyecto;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -34,25 +40,42 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
         this.listaPreguntas = listaPreguntas;
         setearPreguntas();
     }
-    
+    //añade las preguntas del archivo
     private void setearPreguntas(){
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File("/archivos/preguntasPOO.csv"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AdmPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        int i = 0;
-        Materia materia = new Materia("POO","Programacion Orientada a Objetos", 3,true);
-        while(scanner.hasNext()){
-            if(i!=0){
-                String line = scanner.next();
-                String[] tokens = line.split(";");
-                this.listaPreguntas.add(new Pregunta(materia,tokens[0],Integer.parseInt(tokens[1]),tokens[2],tokens[3],tokens[4],tokens[5]));
+        BufferedReader csvReader = null;
+       
+        try {                     
+            String ruta = "src/archivos/preguntasPOO.csv";
+            csvReader = new BufferedReader(new FileReader(ruta));
+            String fila = csvReader.readLine();//escapar cabecera de archivo
+            Materia mat=new Materia();
+            for (Materia m: listaMateria){
+                if(m.getNombre().equals("POO")){
+                    mat=m;
+                    
+                }
             }
-            i++;
+
+            while ((fila = csvReader.readLine()) != null) { //iterar en el contenido del archivo
+                String[] data = fila.split(";");
+                Pregunta preg=new Pregunta(mat,data[0],Integer.parseInt(data[1]),data[2],data[3],data[4],data[5]);
+                listaPreguntas.add(preg); //crear objeto y agregar a lista
+
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EjemploProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EjemploProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                csvReader.close();
+            } catch (IOException ex) {
+                Logger.getLogger(EjemploProyecto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        scanner.close();
+
+    
     }
 
     //Agrega pregunta
@@ -99,13 +122,21 @@ public class AdmPreguntas extends AdminMateria_Paralelo {
      */
     public void verPregunta(String codMateria){
         ArrayList <Pregunta> preguntasToWatch=new ArrayList();
+        
         for(Pregunta p:listaPreguntas){
             if((p.getMateria().getCodigo()).equals(codMateria)){
                 preguntasToWatch.add(p);
             } else {
             }
         }
-        System.out.println(preguntasToWatch);     
+        int i=1;
+        for (Pregunta p: preguntasToWatch){
+            System.out.println(i+") Enunciado: "+ p.getEnunciado()+ " , Nivel: "+p.getNivel()+" , Respuesta Correcta: "+ p.getResp_Correcta());
+            System.out.println("Posibles Respuestas: "+ p.getPosibles_resp());
+            System.out.println("");
+            i++;
+        }
+        
     }
     //elimina pregunta
     public void eliminarPregunta(){
