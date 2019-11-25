@@ -44,7 +44,7 @@ public class NuevoJuego {
     }
     public void setPreguntas(ArrayList<Pregunta> preguntas){//se asigna las preguntas de acuerdo al banco de preguntas y si pertenecen a la materia
         for(Pregunta pregunta: preguntas){
-            if (pregunta.getMateria().getCodigo().equals(this.materia.getCodigo())) this.preguntas.add(pregunta);
+            if (pregunta.getMateria().getCodigo().equals(this.materia.getCodigo()) && pregunta.getNivel()<=this.numeroPreguntaNivel) this.preguntas.add(pregunta);
         }
     }
     private void setComodines(){ //Se setean en una lista los 3 tipos de comodines
@@ -102,23 +102,17 @@ public class NuevoJuego {
     private void comodinDetalle(){ // metodo que devuelve los comodines disponibles para el estudiante
         System.out.println("Comodines disponibles:");
         int conteo = 1;
-        int conteoUsado = 0;
         for(Comodin comodin: this.comodines){
-            if (!comodin.isUsado()) {
                 System.out.println(""+conteo+") "+comodin);
                 conteo++;
-            }
-            else{
-                conteoUsado ++;
-            }
         }
-        if (conteoUsado!=3){
+        if (this.comodines.size()!=0){
             System.out.println("Escoger comodin:");// me permite escoger comodin y cambiar su estado a usado
             Scanner sc = new Scanner(System.in);
             int eleccion = sc.nextInt();
-            Comodin comodin = this.comodines.get(eleccion-1);
+            Comodin comodin = this.comodines.remove(eleccion-1);
             comodin.accion();
-            comodin.setUsado(true);
+            
         }
         else{
             System.out.println("No hay comodines disponibles");
@@ -130,8 +124,9 @@ public class NuevoJuego {
         setComodines(); // se setean los comodines
         boolean derrota = false; // se setea un bandera para saber si fue derrotado o no el jugador
         for(Pregunta pregunta: this.preguntas){
-                FiftyFifty comodin = (FiftyFifty) this.comodines.get(0);
-                if (!comodin.isUsado()) comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
+                FiftyFifty comodin;
+                comodin = this.comodines.get(0) instanceof FiftyFifty ? ((FiftyFifty) this.comodines.get(0)) : null;
+                if (comodin != null) comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
                 Scanner sc = new Scanner(System.in);
                 boolean noAtendidaPregunta = true;
                 String eleccion="";
