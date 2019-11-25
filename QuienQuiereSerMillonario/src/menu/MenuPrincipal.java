@@ -30,7 +30,7 @@ public class MenuPrincipal {
         ArrayList <Termino> listaTermino= new ArrayList();
         ArrayList <Materia>  listaMateria= new ArrayList();
         ArrayList <Paralelo> listaParalelo= new ArrayList();
-        ArrayList <Pregunta> listaPreguntas= new ArrayList();
+    static    ArrayList <Pregunta> listaPreguntas= new ArrayList();
         Termino terminoSeleccionado = null;
         ArrayList<Estudiante> listaEstudiantes= new ArrayList();
 
