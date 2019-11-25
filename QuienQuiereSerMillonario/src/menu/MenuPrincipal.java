@@ -33,7 +33,7 @@ public class MenuPrincipal {
     static    ArrayList <Pregunta> listaPreguntas= new ArrayList();
         Termino terminoSeleccionado = null;
         ArrayList<Estudiante> listaEstudiantes= new ArrayList();
-
+        Configuracion b;
 
     
    
@@ -58,7 +58,7 @@ public class MenuPrincipal {
              case 1:
                  //Se crea un objeto de tipo Configuracion para acceder al metodo menu dentro de Configuracion
 
-                 Configuracion b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
+                 b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
 
                  b.menu();
                  this.terminoSeleccionado=b.getTerminoSeleccionado();
@@ -68,32 +68,42 @@ public class MenuPrincipal {
                   if(this.terminoSeleccionado==null){
                       System.out.println("No existe termino seleccionado"); //No me permite acceder a la opción si no hay un termino
                   }else{
-                      System.out.println("****************Nuevo Juego*********");
-                        Materia materiaObjeto = null; 
-                        while(materiaObjeto==null){
-                            System.out.println("Ingrese codigo de la materia: "); //Se pide por consola el codigo de la materia
-                            String codMateria = sc.next();
-                            materiaObjeto=filtrarCodigoMateria(codMateria); //se filtra en la lista de materias hasta encontrar la primera incidencia
-                        }
-                        Paralelo paraleloObjeto = null;
-                        while(paraleloObjeto==null){
-                            System.out.println("Ingrese número de paralelo: ");//se pide por consola el codigo del paralelo (numero)
-                            int codParalelo = sc.nextInt();
-                            paraleloObjeto=filtrarCodigoParalelo(codParalelo);// se filtra en la lista de paralelos hasta encontrar la primera incidencia
-                        }
-                        System.out.println("Ingrese número de nivel: ");//se pide el numero de nivel
-                        int numNivel = sc.nextInt();
-                        System.out.println("Ingrese matricula de estudiante(opcional: si se deja vacio se escoje un estudiante aleatorio): ");//Se pide por consola la matricula del estudiante
-                        String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next()); //se filtra hasta encontrar la primera incidencia
-                        NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante); //se crea un Nuevo Juego
-                        System.out.println("Ingrese matricula de estudiante como compañero: ");//Se pide ingresar la matricula del quien sera compañero del participante
-                        String matEstudianteCompañero = matEstudiante;
-                        while(matEstudianteCompañero.equals(matEstudiante)){
-                            matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());//Se filtra hasta encontrar al estudiante compañero
-                        }
-                        nuevoJuego.setCompañero(matEstudianteCompañero); //se asigna al compañero al nuevo juego
-                        nuevoJuego.setPreguntas(listaPreguntas); //se setea la lista de preguntas
-                        nuevoJuego.iniciar(); //se inicia el nuevo juego
+                      if(this.b==null){
+                          System.out.println("Tiene que primero ingresar a la opcion 1");
+                      }
+                      else{
+                          if(this.b.getPreguntas()==null){
+                              System.out.println("Tiene que ir al Administrar de preguntas");
+                          }
+                          else{
+                              System.out.println("****************Nuevo Juego*********");
+                                Materia materiaObjeto = null; 
+                                while(materiaObjeto==null){
+                                    System.out.println("Ingrese codigo de la materia: "); //Se pide por consola el codigo de la materia
+                                    String codMateria = sc.next();
+                                    materiaObjeto=filtrarCodigoMateria(codMateria); //se filtra en la lista de materias hasta encontrar la primera incidencia
+                                }
+                                Paralelo paraleloObjeto = null;
+                                while(paraleloObjeto==null){
+                                    System.out.println("Ingrese número de paralelo: ");//se pide por consola el codigo del paralelo (numero)
+                                    int codParalelo = sc.nextInt();
+                                    paraleloObjeto=filtrarCodigoParalelo(codParalelo);// se filtra en la lista de paralelos hasta encontrar la primera incidencia
+                                }
+                                System.out.println("Ingrese número de nivel: ");//se pide el numero de nivel
+                                int numNivel = sc.nextInt();
+                                System.out.println("Ingrese matricula de estudiante(opcional: si se deja vacio se escoje un estudiante aleatorio): ");//Se pide por consola la matricula del estudiante
+                                String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next()); //se filtra hasta encontrar la primera incidencia
+                                NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante); //se crea un Nuevo Juego
+                                System.out.println("Ingrese matricula de estudiante como compañero: ");//Se pide ingresar la matricula del quien sera compañero del participante
+                                String matEstudianteCompañero = matEstudiante;
+                                while(matEstudianteCompañero.equals(matEstudiante)){
+                                    matEstudianteCompañero = filtrarMatriculaEstudiante(paraleloObjeto,sc.next());//Se filtra hasta encontrar al estudiante compañero
+                                }
+                                nuevoJuego.setCompañero(matEstudianteCompañero); //se asigna al compañero al nuevo juego
+                                nuevoJuego.setPreguntas(listaPreguntas); //se setea la lista de preguntas
+                                nuevoJuego.iniciar(); //se inicia el nuevo juego
+                          }
+                      }
                   }
                   
                     break;

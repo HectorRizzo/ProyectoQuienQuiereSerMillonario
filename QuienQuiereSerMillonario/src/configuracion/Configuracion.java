@@ -26,6 +26,7 @@ public class Configuracion {
     ArrayList <Pregunta> listaPreguntas;
     Termino terminoSeleccionado;
     ArrayList <Estudiante> listaEstudiante;
+    AdmPreguntas preguntas=null;
 
     public Configuracion(ArrayList<Termino> listaTermino, ArrayList<Materia> listaMateria, ArrayList<Paralelo> listaParalelo, ArrayList<Pregunta> listaPreguntas, ArrayList <Estudiante> listaEstudiantes) {
         this.listaTermino = listaTermino;
@@ -42,6 +43,14 @@ public class Configuracion {
 
     public void setTerminoSeleccionado(Termino terminoSeleccionado) {
         this.terminoSeleccionado = terminoSeleccionado;
+    }
+
+    public AdmPreguntas getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(AdmPreguntas preguntas) {
+        this.preguntas = preguntas;
     }
 
     
@@ -77,7 +86,7 @@ public class Configuracion {
                 break;
             case 4:
 
-                AdmPreguntas preguntas= new AdmPreguntas(listaPreguntas,listaMateria,listaParalelo,listaTermino);
+                preguntas= new AdmPreguntas(listaPreguntas,listaMateria,listaParalelo,listaTermino);
 
                 
 

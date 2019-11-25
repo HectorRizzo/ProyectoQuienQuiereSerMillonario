@@ -182,7 +182,7 @@ public class NuevoJuego {
                         }
                 
         }
-        String mensaje = derrota ? "Has perdido" : "Has ganado"; //determinar el tipo de mensaje a lanzarse
+        String mensaje = derrota ? "Has perdido" : this.preguntas.size()==0 ? "No hay preguntas para responder": " Has ganado"; //determinar el tipo de mensaje a lanzarse
         System.out.println(mensaje);
     }
 }
