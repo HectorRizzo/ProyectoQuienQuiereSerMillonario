@@ -103,7 +103,7 @@ public class MenuPrincipal {
                                 nuevoJuego.setCompañero(matEstudianteCompañero); //se asigna al compañero al nuevo juego
                                 nuevoJuego.setPreguntas(listaPreguntas); //se setea la lista de preguntas
                                 System.out.println("Presione una tecla para continuar");
-                                String avanzar = sc.next();
+                                String avanzar = new Scanner(System.in).next();
                                 nuevoJuego.iniciar(); //se inicia el nuevo juego
                           }
                       }
