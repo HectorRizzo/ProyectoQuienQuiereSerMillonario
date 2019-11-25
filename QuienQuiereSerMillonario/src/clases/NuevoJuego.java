@@ -125,7 +125,7 @@ public class NuevoJuego {
         boolean derrota = false; // se setea un bandera para saber si fue derrotado o no el jugador
         for(Pregunta pregunta: this.preguntas){
                 FiftyFifty comodin;
-                comodin = this.comodines.get(0) instanceof FiftyFifty ? ((FiftyFifty) this.comodines.get(0)) : null;
+                comodin = !this.comodines.isEmpty() && this.comodines.get(0) instanceof FiftyFifty ? ((FiftyFifty) this.comodines.get(0)) : null;
                 if (comodin != null) comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
                 Scanner sc = new Scanner(System.in);
                 boolean noAtendidaPregunta = true;
