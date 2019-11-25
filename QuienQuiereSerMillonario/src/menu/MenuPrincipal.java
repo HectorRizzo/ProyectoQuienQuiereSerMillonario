@@ -33,7 +33,7 @@ public class MenuPrincipal {
     static    ArrayList <Pregunta> listaPreguntas= new ArrayList();
         Termino terminoSeleccionado = null;
         ArrayList<Estudiante> listaEstudiantes= new ArrayList();
-        Configuracion b;
+        Configuracion b= null;
 
     
    
@@ -57,8 +57,9 @@ public class MenuPrincipal {
                
              case 1:
                  //Se crea un objeto de tipo Configuracion para acceder al metodo menu dentro de Configuracion
-
-                 b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
+                 if (b==null){
+                     b = new Configuracion(listaTermino, listaMateria,listaParalelo, listaPreguntas, listaEstudiantes);
+                 }               
 
                  b.menu();
                  this.terminoSeleccionado=b.getTerminoSeleccionado();
