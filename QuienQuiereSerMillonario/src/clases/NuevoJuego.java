@@ -7,10 +7,12 @@ package clases;
 
 import asbtractos.Comodin;
 import configuracion.AdminTermino;
+import java.time.Instant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,11 +35,12 @@ public class NuevoJuego {
         this.paralelo = paralelo;
         this.numeroPreguntaNivel = numeroPreguntaNivel;
         seleccionarEstudiante(busqueda);// se llama funcion para asignar participante de acuerdo a su busqueda
+        guardarDatosjugador(Date.from(Instant.MIN), numeroPreguntaNivel);
     }
-    public void seleccionarEstudiante(String busqueda){ //busca en la lista si existe ese estudiante caso contrario se devuelve null
+    public Estudiante seleccionarEstudiante(String busqueda){ //busca en la lista si existe ese estudiante caso contrario se devuelve null
         for(Estudiante estudiante: this.paralelo.getLista_est()){
-            if (estudiante.getMatricula().equals(busqueda)) participante=estudiante;
-        }    
+            if (estudiante.getMatricula().equals(busqueda)){ participante=estudiante;}
+        } return participante;   
     }
     public Materia getMateria() {
         return materia;
@@ -179,5 +182,11 @@ public class NuevoJuego {
         }
         String mensaje = derrota ? "Has perdido" : this.preguntas.size()==0 ? "No hay preguntas para responder": " Has ganado"; //determinar el tipo de mensaje a lanzarse
         System.out.println(mensaje);
+    }
+    public void guardarDatosjugador(Date fecha, int nivel){
+        fecha=Date.from(Instant.MIN);
+        getParticipante();
+        System.out.println(fecha + "  **  "+ getParticipante());
+        
     }
 }

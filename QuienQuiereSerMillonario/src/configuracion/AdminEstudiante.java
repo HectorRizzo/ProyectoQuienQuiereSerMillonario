@@ -129,7 +129,7 @@ public class AdminEstudiante {
                 verEstudiantes();
                 break;
             case 2:
-                actualizarEstudiante();
+                //actualizarEstudiante();
                 break;
             default:
                 break;

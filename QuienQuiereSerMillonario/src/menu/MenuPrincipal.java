@@ -18,7 +18,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -53,6 +55,7 @@ public class MenuPrincipal {
            System.out.println("Seleccione una opcion: ");
            opcion = sc.nextInt();
            //Con Switch se proporcionan los diferentes casos que pueden ocurrir y que hacer en caso que se ingrese a cada uno de ellos
+           sc.nextLine();
            switch(opcion){
                
              case 1:
@@ -95,6 +98,8 @@ public class MenuPrincipal {
                                 System.out.println("Ingrese matricula de estudiante(opcional: si se escribe 'aleatorio' se escoje un estudiante aleatorio): ");//Se pide por consola la matricula del estudiante
                                 String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next()); //se filtra hasta encontrar la primera incidencia
                                 NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante); //se crea un Nuevo Juego
+                                //utilizacion del metodo para guardar datos del participante
+                                nuevoJuego.guardarDatosjugador(Date.from(Instant.MIN), numNivel);
                                 System.out.println("Ingrese matricula de estudiante como compañero: ");//Se pide ingresar la matricula del quien sera compañero del participante
                                 String matEstudianteCompañero = matEstudiante;
                                 while(matEstudianteCompañero.equals(matEstudiante)){
@@ -116,8 +121,6 @@ public class MenuPrincipal {
                   System.out.println("Ingrese paralelo: ");
                   int paralelo= sc.nextInt();
                   cargarArchivo();
-                  
-                  
                 break;
               case 4:
                 System.out.println("Salir");
@@ -134,8 +137,10 @@ public class MenuPrincipal {
             fr=new FileReader (file);
             br=new BufferedReader(fr);
             String linea;
-            while((linea=br.readLine())!=null)
-                System.out.println(linea);
+            while((linea=br.readLine())!=null){
+                String[] palabras=linea.split(",");
+                System.out.println(palabras[0] + "  **  "+palabras[1]+ "  **  "+palabras[3]);
+            }
             
         }catch (FileNotFoundException e){
             e.printStackTrace();
