@@ -46,7 +46,6 @@ public class NuevoJuego {
         for(Pregunta pregunta: preguntas){
             if (pregunta.getMateria().getCodigo().equals(this.materia.getCodigo())) this.preguntas.add(pregunta);
         }
-        System.out.println(this.preguntas);
     }
     private void setComodines(){ //Se setean en una lista los 3 tipos de comodines
         this.comodines.add(new FiftyFifty(this.pregunta));//50/50
@@ -57,7 +56,6 @@ public class NuevoJuego {
         for(Estudiante estudiante: this.paralelo.getLista_est()){
             if (estudiante.getMatricula().equals(busqueda)) this.compañero=estudiante;
         }
-        System.out.println(this.compañero);
     }
     public void setMateria(Materia materia) {
         this.materia = materia;
@@ -104,18 +102,27 @@ public class NuevoJuego {
     private void comodinDetalle(){ // metodo que devuelve los comodines disponibles para el estudiante
         System.out.println("Comodines disponibles:");
         int conteo = 1;
+        int conteoUsado = 0;
         for(Comodin comodin: this.comodines){
             if (!comodin.isUsado()) {
                 System.out.println(""+conteo+") "+comodin);
                 conteo++;
             }
+            else{
+                conteoUsado ++;
+            }
         }
-        System.out.println("Escoger comodin:");// me permite escoger comodin y cambiar su estado a usado
-        Scanner sc = new Scanner(System.in);
-        int eleccion = sc.nextInt();
-        Comodin comodin = this.comodines.get(eleccion-1);
-        comodin.accion();
-        comodin.setUsado(true);
+        if (conteoUsado!=3){
+            System.out.println("Escoger comodin:");// me permite escoger comodin y cambiar su estado a usado
+            Scanner sc = new Scanner(System.in);
+            int eleccion = sc.nextInt();
+            Comodin comodin = this.comodines.get(eleccion-1);
+            comodin.accion();
+            comodin.setUsado(true);
+        }
+        else{
+            System.out.println("No hay comodines disponibles");
+        }
         
     }
     
@@ -124,7 +131,7 @@ public class NuevoJuego {
         boolean derrota = false; // se setea un bandera para saber si fue derrotado o no el jugador
         for(Pregunta pregunta: this.preguntas){
                 FiftyFifty comodin = (FiftyFifty) this.comodines.get(0);
-                comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
+                if (!comodin.isUsado()) comodin.setPregunta(pregunta); //Se setea la pregunta al 50/50
                 Scanner sc = new Scanner(System.in);
                 boolean noAtendidaPregunta = true;
                 String eleccion="";
@@ -140,27 +147,31 @@ public class NuevoJuego {
                         switch(eleccion){//jugador procede a seleccionar las opciones entre a b c d
                             case "A":
                                 respuesta = respuestas[0];
+                                noAtendidaPregunta=false;
                                 break;
                             case "B":
                                 respuesta = respuestas[1];
+                                noAtendidaPregunta=false;
                                 break;
                             case "C":
                                 respuesta = respuestas[2];
+                                noAtendidaPregunta=false;
                                 break;
                             case "D":
                                 respuesta = respuestas[3];
+                                noAtendidaPregunta=false;
                                 break;
                             default:
                                 respuesta = null;
                                 break;
                         }
-                        noAtendidaPregunta=false;
+                        
                     }
                     if (respuesta == null){
                         System.out.println("Ingreso de teclado erroneo");
                         noAtendidaPregunta=true;
                     }
-                    else{
+                }
                         if (pregunta.getResp_Correcta().equals(respuesta)){//si la respuesta escogida es misma a la de la respuesta correcta de la pregunta
                             System.out.println("Respuesta Correcta");//Jugador continua
                         }
@@ -169,8 +180,7 @@ public class NuevoJuego {
                             derrota = true;
                             break;
                         }
-                    }
-                }
+                
         }
         String mensaje = derrota ? "Has perdido" : "Has ganado"; //determinar el tipo de mensaje a lanzarse
         System.out.println(mensaje);

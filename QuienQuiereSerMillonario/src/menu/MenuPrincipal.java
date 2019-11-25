@@ -83,7 +83,7 @@ public class MenuPrincipal {
                         }
                         System.out.println("Ingrese número de nivel: ");//se pide el numero de nivel
                         int numNivel = sc.nextInt();
-                        System.out.println("Ingrese matricula de estudiante: ");//Se pide por consola la matricula del estudiante
+                        System.out.println("Ingrese matricula de estudiante(opcional: si se deja vacio se escoje un estudiante aleatorio): ");//Se pide por consola la matricula del estudiante
                         String matEstudiante = filtrarMatriculaEstudiante(paraleloObjeto,sc.next()); //se filtra hasta encontrar la primera incidencia
                         NuevoJuego nuevoJuego = new NuevoJuego(materiaObjeto,paraleloObjeto,numNivel,matEstudiante); //se crea un Nuevo Juego
                         System.out.println("Ingrese matricula de estudiante como compañero: ");//Se pide ingresar la matricula del quien sera compañero del participante
@@ -152,12 +152,15 @@ public class MenuPrincipal {
     }
     
     private String filtrarMatriculaEstudiante(Paralelo paralelo, String codigo){//metodo para filtrar estudiantes
+        if ("".equals(codigo) || codigo==null){
+            int aleatorio = new Random().nextInt(paralelo.getNun_estudiantes());
+            return paralelo.getLista_est().get(aleatorio).getMatricula();
+        }
         for(Estudiante estudiante: paralelo.getLista_est()){
             if(estudiante.getMatricula().equals(codigo)){
                 return codigo;
             }
         }
-        int aleatorio = new Random().nextInt(paralelo.getNun_estudiantes());
-        return paralelo.getLista_est().get(aleatorio).getMatricula();
+        return null;
     }
 }
